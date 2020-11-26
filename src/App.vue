@@ -40,7 +40,7 @@ export default {
   width: 100%;
   overflow: hidden;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   z-index: 0;
