@@ -42,22 +42,6 @@ li {
 a {
   color: #42b983;
 }
-h1{
-  color:var(--text);
-  text-align: center;
-  width:100%;
-  top:10%;
-  position:absolute;
-  z-index: 5;
-}
-p{
-  color:var(--text);
-  text-align: center;
-  width:100%;
-  top: 20%;
-  position:absolute;
-  z-index: 5;
-}
 .square{
   background-color: blue;
   height: 5em;
