@@ -5,6 +5,9 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import { gsap } from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
   name: 'App',
