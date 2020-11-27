@@ -29,6 +29,7 @@ export default {
           end: "top center",
           scrub: 1,
           trigger: anim,
+          toggleActions:"restart pause resume reset",
         },
         x: 400,
        // rotation: 360,
