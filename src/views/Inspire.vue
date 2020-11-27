@@ -1,6 +1,10 @@
 <template>
   <h1>Inspiration</h1>
   <div id="background"></div>
+  <img src="../assets/Moodboard1.png">
+  <img src="../assets/Moodboard2.png">
+  <img src="../assets/Moodboard3.png">
+  <img src="../assets/Moodboard4.png">
 </template>
 
 <style scoped>
