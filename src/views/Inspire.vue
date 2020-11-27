@@ -15,7 +15,7 @@
 <style scoped>
 h1{
     top:0px;
-    position:fixed;
+    position:absolute;
 }
 h2{
   margin-top: 10%;
