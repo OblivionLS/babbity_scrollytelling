@@ -1,12 +1,5 @@
 <template>
-  <div class="hello">
-    <h1>Babbitty Rabbitty and her Cackling Stump</h1>
-  </div>
-  <div class="content">
-    <p>
-      Hier steht der Content
-    </p>
-  </div>
+ 
   <div class="square">
   </div>
   <div class="circle">
