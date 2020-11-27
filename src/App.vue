@@ -3,6 +3,8 @@
     <!-- <router-link to="/">Home</router-link> | -->
     <router-link to="/">Main</router-link>
     <router-link to="/inspiration">Mood</router-link>
+    <router-link to="/dominik">Dominik</router-link>
+    <router-link to="/marco">Marco</router-link>
   </div>
   <router-view />
   <HelloWorld msg="Welcome to Your Vue.js App" />
