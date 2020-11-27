@@ -1,5 +1,4 @@
 <template>
-  <h1>Inspiration</h1>
   <div id="background"></div>
   <div class="window">
   <iframe width="1600" height="900" src="https://miro.com/app/embed/o9J_ld1J6sg=/?pres=1&frameId=3074457352043663400" frameBorder="10" scrolling="no" allowFullScreen></iframe></div>
@@ -49,6 +48,7 @@ export default{
       },
       rotation: 360,
     });
+
   }
 }
 
@@ -63,6 +63,15 @@ h2{
   margin-top: 10%;
   position:relative;
   color: var(--text);
+}
+.box {
+  margin-top: 25em;
+  margin-bottom: 5em;
+  width: 5em;
+  height: 5em;
+  background-color: blue;
+  position: relative;
+  z-index: 10;
 }
 
 img{

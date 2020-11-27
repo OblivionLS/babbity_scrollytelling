@@ -25,6 +25,7 @@ export default {
 <style>
 :root {
   --text: rgb(245, 245, 245);
+  --overlay: rgba(151, 178, 202, 0.178);
 }
 
 #app {
@@ -48,27 +49,27 @@ export default {
 }
 
 #nav {
-  top:2%;
+  top:0px;
   z-index: 5;
-  padding: 30px;
+  padding: 0px 30px 30px 30px;
 }
 
 #nav a {
   text-decoration: none;
   text-align: center;
   font-size: 1.5em;
-  padding-left: 2%;
+  padding-right: 2%;
   position: relative;
   z-index: 50;
-  font-weight: bold;
   color: #e1bc29;
   transition: 0.2s all;
 }
 
 #nav a.router-link-exact-active {
   z-index: 50;
-  font-size: 2.5em;
+  font-size: 2em;
   color: #e1bc29;
+  font-weight: bold;
 }
 
 h1 {
