@@ -1,6 +1,14 @@
 <template>
   <img alt="Background" src="../assets/castle1.jpg" id="background" />
-  <h1>Home Page</h1>
+  <h1 id= "title">Home Page</h1>
+   <div class="hello">
+    <h1>Babbitty Rabbitty and her Cackling Stump</h1>
+  </div>
+  <div class="content">
+    <p>
+      Hier steht der Content
+    </p>
+  </div>
   <div class="box a"></div>
   <div class="box b"></div>
   <div class="box c"></div>
@@ -43,7 +51,7 @@ export default {
 </script>
 
 <style scoped>
-h1 {
+#title {
   top: 0px;
 }
 

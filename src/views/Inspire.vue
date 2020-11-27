@@ -15,7 +15,8 @@ h1{
 }
 
 img{
-  height:100%;
+  height:50%;
+  margin-right:2%;
   overflow:hidden;
   position:relative;
   z-index:4;
