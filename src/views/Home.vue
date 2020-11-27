@@ -9,10 +9,14 @@
   <div class="content">
     <p>Hier steht der Content</p>
   </div>
+  
   <div class="hills">
     <img src="../assets/hill.png" alt="Hill" class="hill hill1" />
-    <div class="overlay"></div>
+    <div class="overlay" style="z-index:7"></div>
+    <img src="../assets/hill2.png" alt="Hill" class="hill hill2" />
+    <div class="overlay" style="z-index:9"></div>
   </div>
+
 </template>
 
 <script>
@@ -55,22 +59,34 @@ export default {
     });
     scrollAt += 500;
 
-    gsap.fromTo(
-      "hill1",
-      {
-        yPercent: -100,
-        opacity: 50,
-      },
+    gsap.to(
+      ".hill1",
       {
         scrollTrigger: {
-          start: "top bottom",
-          end: "+=100",
-          trigger: ".hill",
+          start: scrollAt,
+          end: "+=500",
+          trigger: ".hill1",
           scrub: 1,
-          pin: true,
+          markers: true,
         },
-        opacity:100,
-        yPercent:0,
+        opacity:20,
+        yPercent:-90,
+        z:10,
+      }
+    );
+    gsap.to(
+      ".hill2",
+      {
+        scrollTrigger: {
+          start: scrollAt,
+          end: "+=500",
+          trigger: ".hill2",
+          scrub: 1,
+          markers: true,
+        },
+        opacity:20,
+        yPercent:-90,
+        z:10,
       }
     );
   },
@@ -81,6 +97,7 @@ export default {
 #title {
   top: 0px;
 }
+
 
 .overscreen {
   width: 100%;
@@ -112,12 +129,20 @@ export default {
 
 .hill {
   position: absolute;
-  height: 50%;
   width: 100%;
   overflow: hidden;
   left: 0px;
-  bottom: 0px;
+}
+
+.hill1{
+  height: 70%;
   z-index: 6;
+  bottom: -60%;
+}
+.hill2{
+  height: 40%;
+  z-index: 8;
+  bottom: -40%;
 }
 
 .overlay {
