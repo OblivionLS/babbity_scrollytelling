@@ -48,23 +48,26 @@ export default {
 }
 
 #nav {
+  top:2%;
   z-index: 5;
   padding: 30px;
 }
 
 #nav a {
+  text-decoration: none;
+  text-align: center;
   font-size: 1.5em;
   padding-left: 2%;
   position: relative;
   z-index: 50;
-  /* font-weight: bold; */
+  font-weight: bold;
   color: #e1bc29;
   transition: 0.2s all;
 }
 
 #nav a.router-link-exact-active {
-  z-index: 5;
-  font-size: 2em;
+  z-index: 50;
+  font-size: 2.5em;
   color: #e1bc29;
 }
 
@@ -84,6 +87,6 @@ p{
   width:100%;
   top: 30%;
   position:absolute;
-  z-index: 5;
+  z-index: 10;
 }
 </style>
