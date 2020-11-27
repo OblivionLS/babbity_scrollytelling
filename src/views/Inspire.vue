@@ -1,11 +1,13 @@
 <template>
   <h1>Inspiration</h1>
   <div id="background"></div>
-  <img src="../assets/moodboard1.png">
-  <img src="../assets/moodboard2.png">
-  <img src="../assets/moodboard3.png">
-  <img src="../assets/moodboard4.png">
-  <img src="../assets/moodboard5.png">
+
+  <img src="../assets/moodboard1.png" alt="moodboard">
+  <img src="../assets/moodboard2.png" alt="moodboard">
+  <img src="../assets/moodboard3.png" alt="moodboard">
+  <img src="../assets/moodboard4.png" alt="moodboard">
+  <img src="../assets/moodboard5.png" alt="moodboard">
+
 </template>
 
 <style scoped>
