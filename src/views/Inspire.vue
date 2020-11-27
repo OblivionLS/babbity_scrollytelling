@@ -5,6 +5,7 @@
   <img src="../assets/Moodboard2.png">
   <img src="../assets/Moodboard3.png">
   <img src="../assets/Moodboard4.png">
+  <img src="../assets/Moodboard5.png">
 </template>
 
 <style scoped>
