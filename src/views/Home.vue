@@ -10,11 +10,26 @@
     <p>Hier steht der Content</p>
   </div>
   
-  <div class="hills">
+  <div class="hills elements">
     <img src="../assets/hill.png" alt="Hill" class="hill hill1" />
     <div class="overlay" style="z-index:7"></div>
     <img src="../assets/hill2.png" alt="Hill" class="hill hill2" />
     <div class="overlay" style="z-index:9"></div>
+  </div>
+
+  <div class="character elements">
+    <img src="../assets/koenig.png" alt="koenig" class="koenig">
+  </div>
+
+ 
+  <div class="schloss elements">
+    <img src="../assets/Castle_shading.png" alt="castle" class="castle">
+    <div class="overlay" style="z-index:40"></div>
+  </div>
+
+  <div class="front elements">
+    <img src="../assets/garden4.png" alt="garden" class="garden">
+    <div class="overlay" style="z-index:60"></div>
   </div>
 
 </template>
@@ -89,6 +104,63 @@ export default {
         z:10,
       }
     );
+    scrollAt += 500;
+
+    gsap.to(
+      ".castle",
+      {
+        scrollTrigger: {
+          start: scrollAt,
+          end: "+=500",
+          trigger: ".castle",
+          scrub: 1,
+          markers: true,
+        },
+        opacity:20,
+        yPercent:-120,
+        z:10,
+      }
+    );
+    gsap.to(
+      ".garden",
+      {
+        scrollTrigger: {
+          start: scrollAt,
+          end: "+=500",
+          trigger: ".garden",
+          scrub: 1,
+          markers: true,
+        },
+        opacity:20,
+        yPercent:-170,
+        z:10,
+      }
+    );
+    scrollAt += 500;
+
+gsap.to(
+      ".koenig",
+      {
+        scrollTrigger: {
+          start: scrollAt,
+          end: "+=500",
+          trigger: ".koenig",
+          scrub: 1,
+          markers: true,
+        },
+        opacity:20,
+        yPercent:-210,
+        z:10,
+      }
+    );
+    scrollAt += 500;
+
+    
+
+
+
+
+
   },
 };
 </script>
@@ -113,18 +185,20 @@ export default {
   height: 100%;
   top: 0px;
   left: 0px;
-  z-index: 9;
+  z-index: 50;
   position: absolute;
 }
 
-.hills {
+.elements {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: 6;
   position: fixed;
   left: 0px;
   bottom: 0px;
+}
+
+.hills{
 }
 
 .hill {
@@ -149,7 +223,45 @@ export default {
   background-color: var(--overlay);
   height: 100%;
   width: 100%;
-  z-index: 7;
   position: absolute;
 }
+
+
+
+.character{
+  z-index: 70 !important;
+}
+.koenig{
+  position:absolute;
+  bottom:-100%;
+  right:20%;
+  width:auto;
+  height:50%;
+}
+
+
+.castle{
+  right:0px;
+  position:absolute;
+  height:90%;
+  width:auto;
+  bottom:-100%;
+  z-index: 8 !important;
+}
+.schloss{
+  z-index: 21;
+}
+
+.garden{
+  position:absolute;
+  right:0px;
+  bottom:-100%;
+  width:100%;
+  height:auto;
+  z-index: 50;
+}
+.front{
+  z-index: 50;
+}
+
 </style>

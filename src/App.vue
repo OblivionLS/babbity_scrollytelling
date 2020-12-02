@@ -62,7 +62,7 @@ export default {
   font-size: 1.5em;
   padding-right: 2%;
   position: relative;
-  z-index: 50;
+  z-index: 100;
   color: #e1bc29;
   transition: 0.2s all;
 }
@@ -76,7 +76,7 @@ export default {
 
 h1 {
   position: absolute;
-  z-index: 10;
+  z-index: 90;
   color:var(--text);
   text-align: center;
   width:100%;
@@ -90,6 +90,6 @@ p{
   width:100%;
   top: 30%;
   position:absolute;
-  z-index: 10;
+  z-index: 90;
 }
 </style>
