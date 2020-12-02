@@ -27,7 +27,7 @@ export default {
 <style>
 :root {
   --text: rgb(245, 245, 245);
-  --overlay: rgba(151, 178, 202, 0.178);
+  --overlay: rgba(151, 178, 202, 0.075);
 }
 
 #app {
