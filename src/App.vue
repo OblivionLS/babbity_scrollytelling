@@ -48,6 +48,7 @@ export default {
   left: 0px;
   z-index: 0;
   background-color: black;
+  filter: blur(8px);
 }
 
 #nav {
