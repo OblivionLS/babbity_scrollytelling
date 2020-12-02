@@ -135,7 +135,7 @@ export default {
 }
 
 .hill1{
-  height: 70%;
+  height: 65%;
   z-index: 6;
   bottom: -60%;
 }
