@@ -9,27 +9,26 @@
   <div class="content">
     <p>Hier steht der Content</p>
   </div>
-  
+
   <div class="hills elements">
     <img src="../assets/hill.png" alt="Hill" class="hill hill1" />
-    <div class="overlay" style="z-index:7"></div>
+    <div class="overlay" style="z-index: 7"></div>
     <img src="../assets/hill2.png" alt="Hill" class="hill hill2" />
-    <div class="overlay" style="z-index:9"></div>
+    <div class="overlay" style="z-index: 9"></div>
   </div>
 
   <div class="character elements">
-    <img src="../assets/koenig.png" alt="koenig" class="koenig">
+    <img src="../assets/koenig.png" alt="koenig" class="koenig" />
   </div>
 
- 
   <div class="schloss elements">
-    <div class="overlay" style="z-index:40"></div>
-    <img src="../assets/Castle_shading.png" alt="castle" class="castle">
+    <div class="overlay" style="z-index: 40"></div>
+    <img src="../assets/Castle_shading.png" alt="castle" class="castle" />
   </div>
 
   <div class="front elements">
-    <img src="../assets/garden_shaded.png" alt="garden" class="garden">
-    <div class="overlay" style="z-index:900"></div>
+    <img src="../assets/garden_shaded.png" alt="garden" class="garden" />
+    <div class="overlay" style="z-index: 900"></div>
   </div>
 </template>
 
@@ -73,40 +72,54 @@ export default {
     });
     scrollAt += 500;
 
-    gsap.to(
-      ".hill1",
-      {
-        scrollTrigger: {
-          start: scrollAt,
-          end: "+=500",
-          trigger: ".hill1",
-          scrub: 1,
-          markers: true,
-        },
-        opacity:20,
-        yPercent:-90,
-        z:10,
-      }
-    );
-    gsap.to(
-      ".hill2",
-      {
-        scrollTrigger: {
-          start: scrollAt,
-          end: "+=500",
-          trigger: ".hill2",
-          scrub: 1,
-          markers: true,
-        },
-        opacity:20,
-        yPercent:-90,
-        z:10,
-      }
-    );
+    gsap.to(".hill1", {
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".hill1",
+        scrub: 1,
+        markers: true,
+      },
+      opacity: 20,
+      yPercent: -90,
+      z: 10,
+    });
+    gsap.to(".hill2", {
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".hill2",
+        scrub: 1,
+        markers: true,
+      },
+      opacity: 20,
+      yPercent: -90,
+      z: 10,
+    });
     scrollAt += 500;
 
-    gsap.to(
+    gsap.to(".castle", {
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".castle",
+        scrub: 1,
+        markers: true,
+      },
+      opacity: 20,
+      yPercent: -100,
+      z: 10,
+    });
+
+    scrollAt += 500;
+
+    gsap.fromTo(
       ".castle",
+      {
+        opacity: 20,
+        yPercent: -100,
+        z: 10,
+      },
       {
         scrollTrigger: {
           start: scrollAt,
@@ -115,51 +128,111 @@ export default {
           scrub: 1,
           markers: true,
         },
-        opacity:20,
-        yPercent:-130,
-        z:10,
+        scale: 2.5,
+        yPercent: "-170",
       }
     );
-    gsap.to(
-      ".garden",
-      {
-        scrollTrigger: {
-          start: scrollAt,
-          end: "+=500",
-          trigger: ".garden",
-          scrub: 1,
-          markers: true,
-        },
-        opacity:20,
-        yPercent:-90,
-        z:10,
-      }
-    );
+
     scrollAt += 500;
 
-gsap.to(
+    gsap.to(".garden", {
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".garden",
+        scrub: 1,
+        markers: true,
+      },
+      opacity: 20,
+      yPercent: -90,
+      z: 10,
+    });
+    scrollAt += 500;
+
+    //======================================================
+    //King moving
+    //=====================================================
+
+    let tl = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".koenig",
+        scrub: 1,
+        markers: true,
+      },
+    });
+
+tl.to(".koenig", {
+      xPercent: -100,
+        rotate: 5,
+    })
+  .to(".koenig", {
+      xPercent: -120,
+        rotate: -5,
+    })
+  .to(
       ".koenig",
       {
-        scrollTrigger: {
-          start: scrollAt,
-          end: "+=500",
-          trigger: ".koenig",
-          scrub: 1,
-          markers: true,
-        },
-        opacity:20,
-        yPercent:-210,
-        z:10,
+        xPercent: -140,
+        rotate: 5,
       }
-    );
+    )
+    .to(
+      ".koenig",
+      {
+        xPercent: -160,
+        rotate: -5,
+      })
+      .to(
+      ".koenig",
+      {
+        xPercent: -180,
+        rotate: 5,
+      })
+      .to(
+      ".koenig",
+      {
+        xPercent: -200,
+        rotate: -5,
+      })
+      .to(
+      ".koenig",
+      {
+        xPercent: -220,
+        rotate: 5,
+      })
+      .to(
+      ".koenig",
+      {
+        xPercent: -240,
+        rotate: -5,
+      })
+      .to(
+      ".koenig",
+      {
+        xPercent: -260,
+        rotate: 5,
+      })
+      .to(
+      ".koenig",
+      {
+        xPercent: -280,
+        rotate: 0,
+      })
+    ;
+
+  
+
+  /**
+   *   
+   */
+
+
+
+
+
     scrollAt += 500;
-
-    
-
-
-
-
-
   },
 };
 </script>
@@ -168,7 +241,6 @@ gsap.to(
 #title {
   top: 0px;
 }
-
 
 .overscreen {
   width: 100%;
@@ -197,9 +269,6 @@ gsap.to(
   bottom: 0px;
 }
 
-.hills{
-}
-
 .hill {
   position: absolute;
   width: 100%;
@@ -207,12 +276,12 @@ gsap.to(
   left: 0px;
 }
 
-.hill1{
+.hill1 {
   height: 65%;
   z-index: 6;
   bottom: -60%;
 }
-.hill2{
+.hill2 {
   height: 40%;
   z-index: 8;
   bottom: -40%;
@@ -225,43 +294,39 @@ gsap.to(
   position: absolute;
 }
 
-
-
-.character{
+.character {
   z-index: 70 !important;
 }
-.koenig{
-  position:absolute;
-  bottom:-100%;
-  right:20%;
-  width:auto;
-  height:50%;
+.koenig {
+  position: absolute;
+  bottom: 5%;
+  right: -20%;
+  width: auto;
+  height: 50%;
 }
 
-
-.castle{
-  left:2%;
-  position:absolute;
-  height:90%;
-  width:auto;
-  bottom:-100%;
+.castle {
+  left: 2%;
+  position: absolute;
+  height: 90%;
+  width: auto;
+  bottom: -90%;
   z-index: 8 !important;
 }
-.schloss{
+.schloss {
   z-index: 21;
 }
 
-.garden{
-  position:absolute;
-  right:0px;
-  bottom:-90%;
-  width:100%;
-  height:90%;
-  overflow:hidden;
+.garden {
+  position: absolute;
+  right: 0px;
+  bottom: -90%;
+  width: 100%;
+  height: 90%;
+  overflow: hidden;
   z-index: 50;
 }
-.front{
+.front {
   z-index: 50;
 }
-
 </style>
