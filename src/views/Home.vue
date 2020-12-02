@@ -23,15 +23,14 @@
 
  
   <div class="schloss elements">
-    <img src="../assets/Castle_shading.png" alt="castle" class="castle">
     <div class="overlay" style="z-index:40"></div>
+    <img src="../assets/Castle_shading.png" alt="castle" class="castle">
   </div>
 
   <div class="front elements">
-    <img src="../assets/garden4.png" alt="garden" class="garden">
-    <div class="overlay" style="z-index:60"></div>
+    <img src="../assets/garden_shaded.png" alt="garden" class="garden">
+    <div class="overlay" style="z-index:900"></div>
   </div>
-
 </template>
 
 <script>
@@ -117,7 +116,7 @@ export default {
           markers: true,
         },
         opacity:20,
-        yPercent:-120,
+        yPercent:-130,
         z:10,
       }
     );
@@ -132,7 +131,7 @@ export default {
           markers: true,
         },
         opacity:20,
-        yPercent:-170,
+        yPercent:-90,
         z:10,
       }
     );
@@ -241,7 +240,7 @@ gsap.to(
 
 
 .castle{
-  right:0px;
+  left:2%;
   position:absolute;
   height:90%;
   width:auto;
@@ -255,9 +254,10 @@ gsap.to(
 .garden{
   position:absolute;
   right:0px;
-  bottom:-100%;
+  bottom:-90%;
   width:100%;
-  height:auto;
+  height:90%;
+  overflow:hidden;
   z-index: 50;
 }
 .front{
