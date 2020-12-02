@@ -7,15 +7,7 @@
 </template>
 
 <script>
-import { gsap } from "gsap";
-
 export default {
-  mounted: function(){
-    gsap.from('.square', {duration:4, scale: 2}),
-    gsap.to('.circle', {x: 500, duration: 3}),
-    gsap.fromTo('.circle',{opacity:0 }, {opacity: 1 , x: 500 , duration: 2 }),
-    gsap.fromTo('.square', {opacity:0, x:500}, { opacity:1, x: 1 , duration: 2 })
-  }
 }
 </script>
 
