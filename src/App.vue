@@ -28,6 +28,8 @@ export default {
 :root {
   --text: rgb(245, 245, 245);
   --overlay: rgba(118, 160, 196, 0.151);
+
+  --invisible: rgba(30, 0, 255, 0);
 }
 
 #app {
@@ -69,7 +71,7 @@ export default {
 }
 
 #nav a.router-link-exact-active {
-  z-index: 50;
+  z-index: 100;
   font-size: 2em;
   color: #e1bc29;
   font-weight: bold;

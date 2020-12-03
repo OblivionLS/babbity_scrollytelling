@@ -1,16 +1,16 @@
 <template>
   <img alt="Background" src="../assets/castle1.jpg" id="background" />
-  <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang1" />
-  <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang2" />
 
   <div class="hello">
     <h1>Babbitty Rabbitty and her Cackling Stump</h1>
   </div>
-  <div class="content">
-    <p>Hier steht der Content</p>
-  </div>
+  <div class="content"></div>
 
-  <div class="hills elements">
+<div class="scene1" style="z-index:2">
+  <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang1" />
+  <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang2" />
+
+    <div class="hills elements">
     <img src="../assets/hill.png" alt="Hill" class="hill hill1" />
     <div class="overlay" style="z-index: 7"></div>
     <img src="../assets/hill2.png" alt="Hill" class="hill hill2" />
@@ -30,6 +30,11 @@
     <img src="../assets/garden_shaded.png" alt="garden" class="garden" />
     <div class="overlay" style="z-index: 900"></div>
   </div>
+</div>
+<div class="scene2">
+  <div class="hills elements">
+  <img src="../assets/dorf.png" alt="Village" class="village"></div>
+</div>
 </template>
 
 <script>
@@ -78,7 +83,10 @@ export default {
         end: "+=500",
         trigger: ".hill1",
         scrub: 1,
-        markers: true,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
       },
       opacity: 20,
       yPercent: -90,
@@ -90,7 +98,10 @@ export default {
         end: "+=500",
         trigger: ".hill2",
         scrub: 1,
-        markers: true,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
       },
       opacity: 20,
       yPercent: -90,
@@ -104,11 +115,14 @@ export default {
         end: "+=500",
         trigger: ".castle",
         scrub: 1,
-        markers: true,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
       },
-      opacity: 20,
+      scale:1,
+      opacity: 1,
       yPercent: -100,
-      z: 10,
     });
 
     scrollAt += 500;
@@ -116,9 +130,8 @@ export default {
     gsap.fromTo(
       ".castle",
       {
-        opacity: 20,
+        scale:1,
         yPercent: -100,
-        z: 10,
       },
       {
         scrollTrigger: {
@@ -126,14 +139,17 @@ export default {
           end: "+=500",
           trigger: ".castle",
           scrub: 1,
-          markers: true,
+          markers: {
+            startColor: "var(--invisible)",
+            endColor: "var(--invisible)",
+          },
         },
         scale: 2.5,
         yPercent: "-170",
       }
     );
 
-    scrollAt += 500;
+    //  scrollAt += 500;
 
     gsap.to(".garden", {
       scrollTrigger: {
@@ -141,11 +157,13 @@ export default {
         end: "+=500",
         trigger: ".garden",
         scrub: 1,
-        markers: true,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
       },
-      opacity: 20,
+      opacity: 1,
       yPercent: -90,
-      z: 10,
     });
     scrollAt += 500;
 
@@ -159,80 +177,142 @@ export default {
         end: "+=500",
         trigger: ".koenig",
         scrub: 1,
-        markers: true,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
       },
     });
 
-tl.to(".koenig", {
+    tl.fromTo(".koenig",{opacity:0, xPercent:0, rotate:0,}, {
+      opacity:1,
       xPercent: -100,
-        rotate: 5,
+      rotate: 5,
     })
-  .to(".koenig", {
-      xPercent: -120,
+      .to(".koenig", {
+        xPercent: -120,
         rotate: -5,
-    })
-  .to(
-      ".koenig",
-      {
+      })
+      .to(".koenig", {
         xPercent: -140,
         rotate: 5,
-      }
-    )
-    .to(
-      ".koenig",
-      {
+      })
+      .to(".koenig", {
         xPercent: -160,
         rotate: -5,
       })
-      .to(
-      ".koenig",
-      {
+      .to(".koenig", {
         xPercent: -180,
         rotate: 5,
       })
-      .to(
-      ".koenig",
-      {
+      .to(".koenig", {
         xPercent: -200,
         rotate: -5,
       })
-      .to(
-      ".koenig",
-      {
+      .to(".koenig", {
         xPercent: -220,
         rotate: 5,
       })
-      .to(
-      ".koenig",
-      {
+      .to(".koenig", {
         xPercent: -240,
         rotate: -5,
       })
-      .to(
-      ".koenig",
-      {
+      .to(".koenig", {
         xPercent: -260,
         rotate: 5,
       })
-      .to(
-      ".koenig",
-      {
+      .to(".koenig", {
         xPercent: -280,
         rotate: 0,
-      })
-    ;
-
-  
-
-  /**
-   *   
-   */
+      });
+    scrollAt += 800;
 
 
+//============================================================
+//Fadeout Scene 1
+//==========================================================
+    gsap.fromTo(
+      ".garden",
+      {
+        yPercent: -90,
+      },
+      {
+        scrollTrigger: {
+          start: scrollAt,
+          end: "+=700",
+          trigger: ".garden",
+          scrub: 1,
+          markers: {
+            startColor: "var(--invisible)",
+            endColor: "var(--invisible)",
+          },
+        },
+        opacity:0,
+        yPercent: 100,
+      }
+    );
+    gsap.fromTo(
+      ".castle",
+      { scale: 2.5, yPercent: "-170" },
+      {
+        scrollTrigger: {
+          start: scrollAt,
+          end: "+=700",
+          trigger: ".castle",
+          scrub: 1,
+          markers: {
+            startColor: "var(--invisible)",
+            endColor: "var(--invisible)",
+          },
+        },
+        opacity:0,
+        scale: 0.5,
+        yPercent: "+100",
+      }
+    );
+    gsap.fromTo(
+      ".koenig",
+      { xPercent: -280, rotate: 0 },
+      {
+        scrollTrigger: {
+          start: scrollAt,
+          end: "+=700",
+          trigger: ".koenig",
+          scrub: 1,
+          markers: {
+            startColor: "var(--invisible)",
+            endColor: "var(--invisible)",
+          },
+        },
+        opacity:0,
+        xPercent: 300,
+        yPercent: -100,
+        rotate: 360,
+      }
+    );
+
+    scrollAt += 700;
 
 
+//=============================================================================
+// Fade In Scene 2
+//=============================================================================
+gsap.to(".village",{
+  scrollTrigger: {
+          start: scrollAt,
+          end: "+=500",
+          trigger: ".koenig",
+          scrub: 1,
+          markers: {
+            startColor: "var(--invisible)",
+            endColor: "var(--invisible)",
+          },
+        },
+        opacity:1,
+        yPercent: -100,
+})
 
-    scrollAt += 500;
+
   },
 };
 </script>
@@ -298,6 +378,7 @@ tl.to(".koenig", {
   z-index: 70 !important;
 }
 .koenig {
+  opacity: 0;
   position: absolute;
   bottom: 5%;
   right: -20%;
@@ -306,6 +387,7 @@ tl.to(".koenig", {
 }
 
 .castle {
+  opacity: 0;
   left: 2%;
   position: absolute;
   height: 90%;
@@ -318,6 +400,7 @@ tl.to(".koenig", {
 }
 
 .garden {
+  opacity: 0;
   position: absolute;
   right: 0px;
   bottom: -90%;
@@ -328,5 +411,14 @@ tl.to(".koenig", {
 }
 .front {
   z-index: 50;
+}
+
+.village{
+  opacity: 0;
+  position: absolute;
+  left:0px;
+  top:100%;
+  width:100%;
+  height:auto;
 }
 </style>
