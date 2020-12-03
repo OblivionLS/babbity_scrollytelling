@@ -6,12 +6,14 @@
 </div>
 
 <div class="scene" id="scene2">
+    <button v-on:click="this.scrollUP">UP</button>
     <img src="../assets/babbity.png" class="babbity">
-    <button v-on:click="scrollDown">Down</button>
+    <button v-on:click="this.scrollDown">Down</button>
 </div>
 
 <div class="scene" id="scene3">
-    <button v-on:click="scrollDown">Down</button>
+    <button v-on:click="this.scrollUP">Up</button>
+    <img src="../assets/koenig.png" class="koenig">
 </div>
 
 </template>
@@ -31,23 +33,45 @@ console.log(scrollAt);
 var lastScene = 0;
 var activeScene = 1;
 var nextScene = 2;
+document.get
 
 export default {
 
     methods: {
         scrollUP: function(){
             console.log("gooo ue!!!")
-            console.log(lastScene);
+            var elem = document.getElementById("scene" + lastScene);
+            if(elem != null){
+                elem.scrollIntoView({
+                    behavior: "smooth"
+                });
+                nextScene = activeScene;
+                activeScene = lastScene;
+                lastScene = lastScene - 1;
+            }else{
+                console.log("start of the story");
+            }
+            
         },
         scrollDown: function(){
-            console.log("Es Got abe");
-            lastScene = activeScene;
+            console.log("Go Down");
             var elem = document.getElementById("scene" + nextScene);
-            elem.scrollIntoView({
-                behavior: "smooth"
-            });
+            if(elem != null){
+                elem.scrollIntoView({
+                    behavior: "smooth"
+                });
+            lastScene = activeScene;
             activeScene = nextScene;
             nextScene = nextScene + 1;
+            }else{
+                console.log("End of the Story");
+            }
+            
+            
+
+            
+            console.log(elem);
+
         }
     }
 
@@ -69,7 +93,7 @@ export default {
 }
 
 #scene3{
-    opacity: 0%;
+    opacity: 100%;
 }
 
 </style>
