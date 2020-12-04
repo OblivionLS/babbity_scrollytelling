@@ -36,7 +36,12 @@
   </div>
   <div class="scene2" id="scene2">
     <div class="elements">
-      <img src="../assets/dorf.png" alt="Village" class="village" id="village" />
+      <img
+        src="../assets/dorf.png"
+        alt="Village"
+        class="village"
+        id="village"
+      />
     </div>
 
     <div class="elements character" id="muggle">
@@ -60,7 +65,6 @@ gsap.registerPlugin(ScrollToPlugin);
 
 let scrollAt;
 scrollAt = 0;
-
 
 //var lastScene = 0;
 //var activeScene = 1;
@@ -329,19 +333,21 @@ export default {
       },
     });
 
-    tlVillage.fromTo(".village",{
-      opacity:0, 
-      } ,{
-      opacity: 1,
-      yPercent: -100,
-    })
-  .to(
-      ".village",
-      {
+    tlVillage
+      .fromTo(
+        ".village",
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          yPercent: -100,
+        }
+      )
+      .to(".village", {
         opacity: 1,
         xPercent: 50,
-      }
-    );
+      });
     scrollAt += 500;
 
     let tl1 = gsap.timeline({
@@ -368,165 +374,79 @@ export default {
           rotate: 5,
         }
       )
-      .to(".muggle", {
-        xPercent: -120,
-        yPercent: 5,
-        rotate: -5,
-      })
-      .to(".muggle", {
-        xPercent: -140,
+      for (let i = 0; i < 6; i++) {
+        tl1.to(".muggle", {
+          xPercent: "-=20",
+          yPercent: 5,
+          rotate: -5,
+        })
+        .to(".muggle", {
+        xPercent: "-=20",
         yPercent: -5,
         rotate: 5,
-      })
-      .to(".muggle", {
-        xPercent: -160,
-        yPercent: 5,
-        rotate: -5,
-      })
-      .to(".muggle", {
-        xPercent: -180,
-        yPercent: -5,
-        rotate: 5,
-      })
-      .to(".muggle", {
-        xPercent: -200,
-        yPercent: 5,
-        rotate: -5,
-      })
-      .to(".muggle", {
-        xPercent: -220,
-        yPercent: -5,
-        rotate: 5,
-      })
-      .to(".muggle", {
-        xPercent: -240,
-        yPercent: 5,
-        rotate: -5,
-      })
-      .to(".muggle", {
-        xPercent: -260,
-        yPercent: -5,
-        rotate: 5,
-      })
-      .to(".muggle", {
-        xPercent: -280,
-        yPercent: 0,
-        rotate: 0,
-      })
+      });
+      
+    }
       //wiggle thing in the middle
-      .to(".muggle", {
+          for (let i = 0; i <= 6; i++) {
+      if (i <= 3) {
+        tl1.to(".muggle", {
         xPercent: -280,
-        yPercent: 0,
-        rotate: 0,
-        duration: 1,
-      })
-      .to(".muggle", {
-        xPercent: -280,
-        yPercent: -5,
+        yPercent: "-=4",
         rotate: 10,
       })
       .to(".muggle", {
         xPercent: -280,
-        yPercent: -10,
+        yPercent: "-=4",
         rotate: -10,
-      })
-      .to(".muggle", {
+      });
+      } else {
+        tl1.to(".muggle", {
         xPercent: -280,
-        yPercent: -15,
+        yPercent: "+=4",
         rotate: 10,
       })
       .to(".muggle", {
         xPercent: -280,
-        yPercent: -20,
+        yPercent: "+=4",
         rotate: -10,
-      })
-      .to(".muggle", {
-        xPercent: -280,
-        yPercent: -15,
-        rotate: 10,
-      })
-      .to(".muggle", {
-        xPercent: -280,
-        yPercent: -10,
-        rotate: -10,
-      })
-      .to(".muggle", {
-        xPercent: -280,
-        yPercent: -5,
-        rotate: 10,
-      })
-      .to(".muggle", {
-        xPercent: -280,
-        yPercent: 0,
-        rotate: 0,
-      })
-      //leaving again
-      .to(".muggle", {
-        xPercent: "-=20",
-        yPercent: 5,
-        rotate: -5,
-      })
-      .to(".muggle", {
+      });
+
+      }
+    }
+
+    //leaving again
+    for (let i = 0; i < 10; i++) {
+      if (i <= 6) {
+        tl1.to(".muggle", {
+          xPercent: "-=20",
+          yPercent: 5,
+          rotate: -5,
+        })
+        .to(".muggle", {
         xPercent: "-=20",
         yPercent: -5,
         rotate: 5,
+      });
+      } else {
+        tl1.to(".muggle", {
+        xPercent: "-=20",
+        yPercent: -5,
+        rotate: 5,
+        opacity: "-=0.2",
       })
       .to(".muggle", {
         xPercent: "-=20",
         yPercent: 5,
         rotate: -5,
+        opacity: "-=0.2",
       })
-      .to(".muggle", {
-        xPercent: "-=20",
-        yPercent: -5,
-        rotate: 5,
-      })
-      .to(".muggle", {
-        xPercent: "-=20",
-        yPercent: 5,
-        rotate: -5,
-      })
-      .to(".muggle", {
-        xPercent: "-=20",
-        yPercent: -5,
-        rotate: 5,
-      })
-      .to(".muggle", {
-        xPercent: "-=20",
-        yPercent: 5,
-        rotate: -5,
-      })
-      .to(".muggle", {
-        xPercent: "-=20",
-        yPercent: -5,
-        rotate: 5,
-      })
-      .to(".muggle", {
-        xPercent: "-=20",
-        yPercent: 5,
-        rotate: -5,
-        opacity: 0.8,
-      })
-      .to(".muggle", {
-        xPercent: "-=20",
-        yPercent: -5,
-        rotate: 5,
-        opacity: 0.6,
-      })
-      .to(".muggle", {
-        xPercent: "-=20",
-        yPercent: 5,
-        rotate: -5,
-        opacity: 0.4,
-      })
-      .to(".muggle", {
-        xPercent: "-=20",
-        yPercent: -5,
-        rotate: 5,
-        opacity: 0.2,
-      })
-      .to(".muggle", { xPercent: "-=20", yPercent: 5, rotate: -5, opacity: 0 });
+
+      }
+    }
+    
     scrollAt += 800;
+
   },
 
   methods: {
@@ -535,7 +455,7 @@ export default {
       var elem = document.getElementById("scene" + nextScene);
       console.log(elem);
       if (elem != null) {
-        gsap.to(window, { duration: 10, scrollTo: 2800});
+        gsap.to(window, { duration: 10, scrollTo: 2800 });
         //lastScene = activeScene;
         //activeScene = nextScene;
         nextScene = nextScene + 1;
