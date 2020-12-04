@@ -8,25 +8,29 @@
     <figcaption>
         Audio 000_Test
     </figcaption>
-    <audio id="sound" controls="controls">
-        <source src="../assets/audio/100_full_audio.mp3" type="audio/mp3" />
-    <code>audio</code>
-    </audio>
 </figure>
 
 <p>Marcos page</p>
 
 
+
 <h2>Tween timeScale</h2>
-<button id="play">Play</button>
-<button id="pause">Pause</button>
 <div id="container">
   <div id="creature"></div>
 </div>
 
+
+
 </template>
 
 <script>
+
+
+export default {
+
+  methods: {
+  }
+}
 
 </script>
 
