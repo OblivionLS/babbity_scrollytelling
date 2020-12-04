@@ -11,7 +11,7 @@
     <audio id="sound" controls="controls">
         <source src="../assets/audio/100_full_audio.mp3" type="audio/mp3" />
     <code>audio</code>
-    </audio>    
+    </audio>
 </figure>
 
 <p>Marcos page</p>
@@ -27,8 +27,6 @@
 </template>
 
 <script>
-
-
 
 </script>
 
