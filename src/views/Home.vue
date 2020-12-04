@@ -70,7 +70,7 @@ gsap.registerPlugin(ScrollToPlugin);
 
 let scrollAt;
 scrollAt = 0;
-let parts = [0, 2800, 4800];
+let parts = [1, 2800, 4800];
 
 //var lastScene = 0;
 //var activeScene = 1;
@@ -80,11 +80,14 @@ var nextScene = 1;
 export default {
   mounted: function () {
 
+
+
     //=========================================================
     //Button Animation
     //=========================================================
-    for (let i = 0; i < parts.length; i++) {
-      gsap.to(".btn", {
+    for (let i = 1; i < parts.length; i++) {
+      gsap.fromTo(".btn", {yPercent: 0,
+            opacity: 1,},{
         scrollTrigger: {
           start: parts[i],
           end: "+=500",
@@ -99,7 +102,6 @@ export default {
         yPercent: 100,
         opacity: 0,
       });
-      if (i != 0) {
         gsap.fromTo(
           ".btn",
           { yPercent: 100, opacity: 0 },
@@ -119,7 +121,7 @@ export default {
             opacity: 1,
           }
         );
-      }
+      
     }
 
     //=========================================================
@@ -147,6 +149,24 @@ export default {
       xPercent: -100,
     });
     scrollAt += 500;
+
+    //fist button animation.
+    gsap.fromTo(".btn", {yPercent: 0,
+            opacity: 1,},{
+        scrollTrigger: {
+          start: 100,
+          end: "+=500",
+          trigger: ".btn",
+          scrub: 1,
+          markers: {
+            startColor: "var(--invisible)",
+            endColor: "var(--invisible)",
+          },
+        },
+
+        yPercent: 100,
+        opacity: 0,
+      });
 
     gsap.to(".hill1", {
       scrollTrigger: {
@@ -657,6 +677,7 @@ button {
   margin-right: -20%;
   right: 50%;
   bottom: 0px;
+  opacity: 1;
 }
 
 button:focus {
