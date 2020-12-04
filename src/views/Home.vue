@@ -3,10 +3,11 @@
 
   <div class="hello">
     <h1>Babbitty Rabbitty and her Cackling Stump</h1>
+    <p>Make sure you're sound is on to listen to the story</p>
   </div>
   <div class="content"></div>
   <div class="button">
-    <button v-on:click="scrollDown">Down</button>
+    <button v-on:click="scrollDown" id="button" class="btn">Klick Me</button>
   </div>
 
   <div class="scene1" style="z-index: 2" id="scene1">
@@ -65,6 +66,7 @@ gsap.registerPlugin(ScrollToPlugin);
 
 let scrollAt;
 scrollAt = 0;
+let parts = [0, 2800, 4800];
 
 //var lastScene = 0;
 //var activeScene = 1;
@@ -72,6 +74,49 @@ var nextScene = 1;
 
 export default {
   mounted: function () {
+
+    //=========================================================
+    //Button Animation
+    //=========================================================
+    for (let i = 0; i < parts.length; i++) {
+      gsap.to(".btn", {
+        scrollTrigger: {
+          start: parts[i],
+          end: "+=500",
+          trigger: ".btn",
+          scrub: 1,
+          markers: {
+            startColor: "var(--invisible)",
+            endColor: "var(--invisible)",
+          },
+        },
+
+        yPercent: 100,
+        opacity: 0,
+      });
+      if (i != 0) {
+        gsap.fromTo(
+          ".btn",
+          { yPercent: 100, opacity: 0 },
+          {
+            scrollTrigger: {
+              start: parts[i] - 500,
+              end: "+=500",
+              trigger: ".btn",
+              scrub: 1,
+              markers: {
+                startColor: "var(--invisible)",
+                endColor: "var(--invisible)",
+              },
+            },
+
+            yPercent: 0,
+            opacity: 1,
+          }
+        );
+      }
+    }
+
     //=========================================================
     //Vorhang Animation
     //=========================================================
@@ -363,90 +408,90 @@ export default {
       },
     });
 
-    tl1
-      .fromTo(
-        ".muggle",
-        { opacity: 0, xPercent: 0, rotate: 0 },
-        {
-          opacity: 1,
-          xPercent: -100,
-          yPercent: -5,
-          rotate: 5,
-        }
-      )
-      for (let i = 0; i < 6; i++) {
-        tl1.to(".muggle", {
+    tl1.fromTo(
+      ".muggle",
+      { opacity: 0, xPercent: 0, rotate: 0 },
+      {
+        opacity: 1,
+        xPercent: -100,
+        yPercent: -5,
+        rotate: 5,
+      }
+    );
+    for (let i = 0; i < 6; i++) {
+      tl1
+        .to(".muggle", {
           xPercent: "-=20",
           yPercent: 5,
           rotate: -5,
         })
         .to(".muggle", {
-        xPercent: "-=20",
-        yPercent: -5,
-        rotate: 5,
-      });
-      
+          xPercent: "-=20",
+          yPercent: -5,
+          rotate: 5,
+        });
     }
-      //wiggle thing in the middle
-          for (let i = 0; i <= 6; i++) {
+    //wiggle thing in the middle
+    for (let i = 0; i <= 6; i++) {
       if (i <= 3) {
-        tl1.to(".muggle", {
-        xPercent: -280,
-        yPercent: "-=4",
-        rotate: 10,
-      })
-      .to(".muggle", {
-        xPercent: -280,
-        yPercent: "-=4",
-        rotate: -10,
-      });
+        tl1
+          .to(".muggle", {
+            xPercent: -280,
+            yPercent: "-=4",
+            rotate: 10,
+          })
+          .to(".muggle", {
+            xPercent: -280,
+            yPercent: "-=4",
+            rotate: -10,
+          });
       } else {
-        tl1.to(".muggle", {
-        xPercent: -280,
-        yPercent: "+=4",
-        rotate: 10,
-      })
-      .to(".muggle", {
-        xPercent: -280,
-        yPercent: "+=4",
-        rotate: -10,
-      });
-
+        tl1
+          .to(".muggle", {
+            xPercent: -280,
+            yPercent: "+=4",
+            rotate: 10,
+          })
+          .to(".muggle", {
+            xPercent: -280,
+            yPercent: "+=4",
+            rotate: -10,
+          });
       }
     }
 
     //leaving again
     for (let i = 0; i < 10; i++) {
       if (i <= 6) {
-        tl1.to(".muggle", {
-          xPercent: "-=20",
-          yPercent: 5,
-          rotate: -5,
-        })
-        .to(".muggle", {
-        xPercent: "-=20",
-        yPercent: -5,
-        rotate: 5,
-      });
+        tl1
+          .to(".muggle", {
+            xPercent: "-=20",
+            yPercent: 5,
+            rotate: -5,
+          })
+          .to(".muggle", {
+            xPercent: "-=20",
+            yPercent: -5,
+            rotate: 5,
+          });
       } else {
-        tl1.to(".muggle", {
-        xPercent: "-=20",
-        yPercent: -5,
-        rotate: 5,
-        opacity: "-=0.2",
-      })
-      .to(".muggle", {
-        xPercent: "-=20",
-        yPercent: 5,
-        rotate: -5,
-        opacity: "-=0.2",
-      })
-
+        tl1
+          .to(".muggle", {
+            xPercent: "-=20",
+            yPercent: -5,
+            rotate: 5,
+            opacity: "-=0.2",
+          })
+          .to(".muggle", {
+            xPercent: "-=20",
+            yPercent: 5,
+            rotate: -5,
+            opacity: "-=0.2",
+          });
       }
     }
-    
-    scrollAt += 800;
 
+    scrollAt += 800;
   },
 
   methods: {
@@ -588,5 +633,28 @@ export default {
 .button {
   position: fixed;
   z-index: 100;
+  bottom: 0%;
+  margin: auto;
+  width: 100%;
+}
+
+button {
+  padding: 1em 3em;
+  background-color: rgba(0, 0, 0, 0.493);
+  color: white;
+  border: none;
+  font-size: 1.5em;
+  text-align: center;
+  margin: auto;
+  position: absolute;
+  width: 40%;
+  margin-right: -20%;
+  right: 50%;
+  bottom: 0px;
+}
+
+button:focus {
+  border: none;
+  outline: none;
 }
 </style>
