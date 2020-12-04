@@ -32,8 +32,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-let screenWidth = window.innerWidth;
-console.log(screenWidth);
 let scrollAt;
 scrollAt = 0;
 console.log(scrollAt);

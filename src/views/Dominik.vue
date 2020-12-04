@@ -26,11 +26,6 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 gsap.registerPlugin(ScrollToPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
-let screenWidth = window.innerWidth;
-console.log(screenWidth);
-let scrollAt;
-scrollAt = 0;
-console.log(scrollAt);
 
 var lastScene = 0;
 var activeScene = 1;

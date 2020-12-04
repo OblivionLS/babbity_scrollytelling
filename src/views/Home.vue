@@ -35,8 +35,8 @@
     </div>
   </div>
   <div class="scene2" id="scene2">
-    <div class="hills elements">
-      <img src="../assets/dorf.png" alt="Village" class="village" />
+    <div class="elements">
+      <img src="../assets/dorf.png" alt="Village" class="village" id="village" />
     </div>
 
     <div class="elements character" id="muggle">
@@ -58,11 +58,9 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
 
-let screenWidth = window.innerWidth;
-console.log(screenWidth);
 let scrollAt;
 scrollAt = 0;
-console.log(scrollAt);
+
 
 //var lastScene = 0;
 //var activeScene = 1;
@@ -249,7 +247,7 @@ export default {
         rotate: 0,
       });
     scrollAt += 800;
-
+    console.log(scrollAt);
     //============================================================
     //Fadeout Scene 1
     //==========================================================
@@ -318,36 +316,28 @@ export default {
     //=============================================================================
     // Fade In Scene 2
     //=============================================================================
-    gsap.to(".village", {
+    let tlVillage = gsap.timeline({
       scrollTrigger: {
         start: scrollAt,
         end: "+=500",
-        trigger: ".koenig",
+        trigger: ".village",
         scrub: 1,
         markers: {
           startColor: "var(--invisible)",
           endColor: "var(--invisible)",
         },
       },
+    });
+
+    tlVillage.fromTo(".village",{
+      opacity:0, 
+      } ,{
       opacity: 1,
       yPercent: -100,
-    });
-    scrollAt += 500;
-
-    gsap.fromTo(
+    })
+  .to(
       ".village",
-      { opacity: 1, yPercent: -100 },
       {
-        scrollTrigger: {
-          start: scrollAt,
-          end: "+=500",
-          trigger: ".koenig",
-          scrub: 1,
-          markers: {
-            startColor: "var(--invisible)",
-            endColor: "var(--invisible)",
-          },
-        },
         opacity: 1,
         xPercent: 50,
       }
