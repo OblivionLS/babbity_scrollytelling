@@ -5,8 +5,11 @@
     <h1>Babbitty Rabbitty and her Cackling Stump</h1>
   </div>
   <div class="content"></div>
+  <div class="button">
+    <button v-on:click="scrollDown">Down</button>
+  </div>
 
-  <div class="scene1" style="z-index: 2">
+  <div class="scene1" style="z-index: 2" id="scene1">
     <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang1" />
     <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang2" />
 
@@ -31,13 +34,18 @@
       <div class="overlay" style="z-index: 900"></div>
     </div>
   </div>
-  <div class="scene2">
+  <div class="scene2" id="scene2">
     <div class="hills elements">
       <img src="../assets/dorf.png" alt="Village" class="village" />
     </div>
 
     <div class="elements character" id="muggle">
-      <img src="../assets/babbity.png" alt="Muggle" class="muggle" style="transform:scaleX(-1)" />
+      <img
+        src="../assets/babbity.png"
+        alt="Muggle"
+        class="muggle"
+        style="transform: scaleX(-1)"
+      />
     </div>
   </div>
 </template>
@@ -45,14 +53,20 @@
 <script>
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollToPlugin);
 
 let screenWidth = window.innerWidth;
 console.log(screenWidth);
 let scrollAt;
 scrollAt = 0;
 console.log(scrollAt);
+
+//var lastScene = 0;
+//var activeScene = 1;
+var nextScene = 1;
 
 export default {
   mounted: function () {
@@ -320,26 +334,27 @@ export default {
     });
     scrollAt += 500;
 
-gsap.fromTo(".village", {opacity: 1,
-      yPercent: -100,},{
-      scrollTrigger: {
-        start: scrollAt,
-        end: "+=500",
-        trigger: ".koenig",
-        scrub: 1,
-        markers: {
-          startColor: "var(--invisible)",
-          endColor: "var(--invisible)",
+    gsap.fromTo(
+      ".village",
+      { opacity: 1, yPercent: -100 },
+      {
+        scrollTrigger: {
+          start: scrollAt,
+          end: "+=500",
+          trigger: ".koenig",
+          scrub: 1,
+          markers: {
+            startColor: "var(--invisible)",
+            endColor: "var(--invisible)",
+          },
         },
-      },
-      opacity: 1,
-      xPercent: 50,
-    });
+        opacity: 1,
+        xPercent: 50,
+      }
+    );
     scrollAt += 500;
 
-
-
-   let tl1 = gsap.timeline({
+    let tl1 = gsap.timeline({
       scrollTrigger: {
         start: scrollAt,
         end: "+=500",
@@ -352,16 +367,17 @@ gsap.fromTo(".village", {opacity: 1,
       },
     });
 
-    tl1.fromTo(
-      ".muggle",
-      { opacity: 0, xPercent: 0, rotate: 0 },
-      {
-        opacity: 1,
-        xPercent: -100,
-        yPercent: -5,
-        rotate: 5,
-      }
-    )
+    tl1
+      .fromTo(
+        ".muggle",
+        { opacity: 0, xPercent: 0, rotate: 0 },
+        {
+          opacity: 1,
+          xPercent: -100,
+          yPercent: -5,
+          rotate: 5,
+        }
+      )
       .to(".muggle", {
         xPercent: -120,
         yPercent: 5,
@@ -412,7 +428,7 @@ gsap.fromTo(".village", {opacity: 1,
         xPercent: -280,
         yPercent: 0,
         rotate: 0,
-        duration:1,
+        duration: 1,
       })
       .to(".muggle", {
         xPercent: -280,
@@ -499,36 +515,45 @@ gsap.fromTo(".village", {opacity: 1,
         xPercent: "-=20",
         yPercent: 5,
         rotate: -5,
-        opacity:0.8,
+        opacity: 0.8,
       })
       .to(".muggle", {
         xPercent: "-=20",
         yPercent: -5,
         rotate: 5,
-        opacity:0.6,
+        opacity: 0.6,
       })
       .to(".muggle", {
         xPercent: "-=20",
         yPercent: 5,
         rotate: -5,
-        opacity:0.4
+        opacity: 0.4,
       })
       .to(".muggle", {
         xPercent: "-=20",
         yPercent: -5,
         rotate: 5,
-        opacity:0.2,
+        opacity: 0.2,
       })
-      .to(".muggle", {xPercent: "-=20",
-        yPercent: 5,
-        rotate: -5,
-        opacity:0,
-      })
-      ;
+      .to(".muggle", { xPercent: "-=20", yPercent: 5, rotate: -5, opacity: 0 });
     scrollAt += 800;
+  },
 
-
-
+  methods: {
+    scrollDown: function () {
+      console.log("Go Down");
+      var elem = document.getElementById("scene" + nextScene);
+      console.log(elem);
+      if (elem != null) {
+        gsap.to(window, { duration: 10, scrollTo: 2800});
+        //lastScene = activeScene;
+        //activeScene = nextScene;
+        nextScene = nextScene + 1;
+      } else {
+        console.log("End of the Story");
+      }
+      console.log(scrollAt);
+    },
   },
 };
 </script>
@@ -638,16 +663,20 @@ gsap.fromTo(".village", {opacity: 1,
   height: 150%;
 }
 
-.muggle{
+.muggle {
   opacity: 0;
-  height:70%;
-  position:absolute;
-  right:-20%;
-  bottom:0%;
-
+  height: 70%;
+  position: absolute;
+  right: -20%;
+  bottom: 0%;
 }
 
-.character#muggle{
-  transform:scaleX(-1);
+.character#muggle {
+  transform: scaleX(-1);
+}
+
+.button {
+  position: fixed;
+  z-index: 100;
 }
 </style>
