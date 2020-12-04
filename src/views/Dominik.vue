@@ -78,15 +78,15 @@ export default {
 }
 
 #scene1{
-    opacity: 100%;
+    opacity: 1;
 }
 
 #scene2{
-    opacity: 100%;
+    opacity: 1;
 }
 
 #scene3{
-    opacity: 100%;
+    opacity: 1;
 }
 
 </style>
