@@ -9,6 +9,10 @@
   <div class="button">
     <button v-on:click="scrollDown" id="button" class="btn">Klick Me</button>
   </div>
+  <audio id="testAudio">
+    <source src="../assets/audio/100_full_audio.mp3" type="audio/mpeg">
+  </audio>
+
 
   <div class="scene1" style="z-index: 2" id="scene1">
     <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang1" />
@@ -71,6 +75,7 @@ let parts = [0, 2800, 4800];
 //var lastScene = 0;
 //var activeScene = 1;
 var nextScene = 1;
+//var pathAudio = "../assets/audio/";
 
 export default {
   mounted: function () {
@@ -503,7 +508,8 @@ export default {
         gsap.to(window, { duration: 10, scrollTo: 2800 });
         //lastScene = activeScene;
         //activeScene = nextScene;
-        nextScene = nextScene + 1;
+        var snd = document.getElementById("testAudio");
+        snd.play();
       } else {
         console.log("End of the Story");
       }
