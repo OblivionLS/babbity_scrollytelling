@@ -21,7 +21,9 @@
 <script>
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
+gsap.registerPlugin(ScrollToPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
 let screenWidth = window.innerWidth;
@@ -42,9 +44,7 @@ export default {
             console.log("gooo ue!!!")
             var elem = document.getElementById("scene" + lastScene);
             if(elem != null){
-                elem.scrollIntoView({
-                    behavior: "smooth"
-                });
+                gsap.to(window, {duration: 2, scrollTo:"#scene" + lastScene});
                 nextScene = activeScene;
                 activeScene = lastScene;
                 lastScene = lastScene - 1;
@@ -57,12 +57,10 @@ export default {
             console.log("Go Down");
             var elem = document.getElementById("scene" + nextScene);
             if(elem != null){
-                elem.scrollIntoView({
-                    behavior: "smooth"
-                });
-            lastScene = activeScene;
-            activeScene = nextScene;
-            nextScene = nextScene + 1;
+                gsap.to(window, {duration: 2, scrollTo:"#scene"+nextScene});
+                lastScene = activeScene;
+                activeScene = nextScene;
+                nextScene = nextScene + 1;
             }else{
                 console.log("End of the Story");
             }
