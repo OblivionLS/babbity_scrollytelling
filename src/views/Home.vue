@@ -6,35 +6,40 @@
   </div>
   <div class="content"></div>
 
-<div class="scene1" style="z-index:2">
-  <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang1" />
-  <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang2" />
+  <div class="scene1" style="z-index: 2">
+    <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang1" />
+    <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang2" />
 
     <div class="hills elements">
-    <img src="../assets/hill.png" alt="Hill" class="hill hill1" />
-    <div class="overlay" style="z-index: 7"></div>
-    <img src="../assets/hill2.png" alt="Hill" class="hill hill2" />
-    <div class="overlay" style="z-index: 9"></div>
-  </div>
+      <img src="../assets/hill.png" alt="Hill" class="hill hill1" />
+      <div class="overlay" style="z-index: 7"></div>
+      <img src="../assets/hill2.png" alt="Hill" class="hill hill2" />
+      <div class="overlay" style="z-index: 9"></div>
+    </div>
 
-  <div class="character elements">
-    <img src="../assets/koenig.png" alt="koenig" class="koenig" />
-  </div>
+    <div class="character elements">
+      <img src="../assets/koenig.png" alt="koenig" class="koenig" />
+    </div>
 
-  <div class="schloss elements">
-    <div class="overlay" style="z-index: 40"></div>
-    <img src="../assets/Castle_shading.png" alt="castle" class="castle" />
-  </div>
+    <div class="schloss elements">
+      <div class="overlay" style="z-index: 40"></div>
+      <img src="../assets/Castle_shading.png" alt="castle" class="castle" />
+    </div>
 
-  <div class="front elements">
-    <img src="../assets/garden_shaded.png" alt="garden" class="garden" />
-    <div class="overlay" style="z-index: 900"></div>
+    <div class="front elements">
+      <img src="../assets/garden_shaded.png" alt="garden" class="garden" />
+      <div class="overlay" style="z-index: 900"></div>
+    </div>
   </div>
-</div>
-<div class="scene2">
-  <div class="hills elements">
-  <img src="../assets/dorf.png" alt="Village" class="village"></div>
-</div>
+  <div class="scene2">
+    <div class="hills elements">
+      <img src="../assets/dorf.png" alt="Village" class="village" />
+    </div>
+
+    <div class="elements character" id="muggle">
+      <img src="../assets/babbity.png" alt="Muggle" class="muggle" style="transform:scaleX(-1)" />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -120,7 +125,7 @@ export default {
           endColor: "var(--invisible)",
         },
       },
-      scale:1,
+      scale: 1,
       opacity: 1,
       yPercent: -100,
     });
@@ -130,7 +135,7 @@ export default {
     gsap.fromTo(
       ".castle",
       {
-        scale:1,
+        scale: 1,
         yPercent: -100,
       },
       {
@@ -184,11 +189,15 @@ export default {
       },
     });
 
-    tl.fromTo(".koenig",{opacity:0, xPercent:0, rotate:0,}, {
-      opacity:1,
-      xPercent: -100,
-      rotate: 5,
-    })
+    tl.fromTo(
+      ".koenig",
+      { opacity: 0, xPercent: 0, rotate: 0 },
+      {
+        opacity: 1,
+        xPercent: -100,
+        rotate: 5,
+      }
+    )
       .to(".koenig", {
         xPercent: -120,
         rotate: -5,
@@ -227,10 +236,9 @@ export default {
       });
     scrollAt += 800;
 
-
-//============================================================
-//Fadeout Scene 1
-//==========================================================
+    //============================================================
+    //Fadeout Scene 1
+    //==========================================================
     gsap.fromTo(
       ".garden",
       {
@@ -247,7 +255,7 @@ export default {
             endColor: "var(--invisible)",
           },
         },
-        opacity:0,
+        opacity: 0,
         yPercent: 100,
       }
     );
@@ -265,7 +273,7 @@ export default {
             endColor: "var(--invisible)",
           },
         },
-        opacity:0,
+        opacity: 0,
         scale: 0.5,
         yPercent: "+100",
       }
@@ -284,7 +292,7 @@ export default {
             endColor: "var(--invisible)",
           },
         },
-        opacity:0,
+        opacity: 0,
         xPercent: 300,
         yPercent: -100,
         rotate: 360,
@@ -293,24 +301,232 @@ export default {
 
     scrollAt += 700;
 
-
-//=============================================================================
-// Fade In Scene 2
-//=============================================================================
-gsap.to(".village",{
-  scrollTrigger: {
-          start: scrollAt,
-          end: "+=500",
-          trigger: ".koenig",
-          scrub: 1,
-          markers: {
-            startColor: "var(--invisible)",
-            endColor: "var(--invisible)",
-          },
+    //=============================================================================
+    // Fade In Scene 2
+    //=============================================================================
+    gsap.to(".village", {
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".koenig",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
         },
-        opacity:1,
-        yPercent: -100,
-})
+      },
+      opacity: 1,
+      yPercent: -100,
+    });
+    scrollAt += 500;
+
+gsap.fromTo(".village", {opacity: 1,
+      yPercent: -100,},{
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".koenig",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+      opacity: 1,
+      xPercent: 50,
+    });
+    scrollAt += 500;
+
+
+
+   let tl1 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".muggle",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+
+    tl1.fromTo(
+      ".muggle",
+      { opacity: 0, xPercent: 0, rotate: 0 },
+      {
+        opacity: 1,
+        xPercent: -100,
+        yPercent: -5,
+        rotate: 5,
+      }
+    )
+      .to(".muggle", {
+        xPercent: -120,
+        yPercent: 5,
+        rotate: -5,
+      })
+      .to(".muggle", {
+        xPercent: -140,
+        yPercent: -5,
+        rotate: 5,
+      })
+      .to(".muggle", {
+        xPercent: -160,
+        yPercent: 5,
+        rotate: -5,
+      })
+      .to(".muggle", {
+        xPercent: -180,
+        yPercent: -5,
+        rotate: 5,
+      })
+      .to(".muggle", {
+        xPercent: -200,
+        yPercent: 5,
+        rotate: -5,
+      })
+      .to(".muggle", {
+        xPercent: -220,
+        yPercent: -5,
+        rotate: 5,
+      })
+      .to(".muggle", {
+        xPercent: -240,
+        yPercent: 5,
+        rotate: -5,
+      })
+      .to(".muggle", {
+        xPercent: -260,
+        yPercent: -5,
+        rotate: 5,
+      })
+      .to(".muggle", {
+        xPercent: -280,
+        yPercent: 0,
+        rotate: 0,
+      })
+      //wiggle thing in the middle
+      .to(".muggle", {
+        xPercent: -280,
+        yPercent: 0,
+        rotate: 0,
+        duration:1,
+      })
+      .to(".muggle", {
+        xPercent: -280,
+        yPercent: -5,
+        rotate: 10,
+      })
+      .to(".muggle", {
+        xPercent: -280,
+        yPercent: -10,
+        rotate: -10,
+      })
+      .to(".muggle", {
+        xPercent: -280,
+        yPercent: -15,
+        rotate: 10,
+      })
+      .to(".muggle", {
+        xPercent: -280,
+        yPercent: -20,
+        rotate: -10,
+      })
+      .to(".muggle", {
+        xPercent: -280,
+        yPercent: -15,
+        rotate: 10,
+      })
+      .to(".muggle", {
+        xPercent: -280,
+        yPercent: -10,
+        rotate: -10,
+      })
+      .to(".muggle", {
+        xPercent: -280,
+        yPercent: -5,
+        rotate: 10,
+      })
+      .to(".muggle", {
+        xPercent: -280,
+        yPercent: 0,
+        rotate: 0,
+      })
+      //leaving again
+      .to(".muggle", {
+        xPercent: "-=20",
+        yPercent: 5,
+        rotate: -5,
+      })
+      .to(".muggle", {
+        xPercent: "-=20",
+        yPercent: -5,
+        rotate: 5,
+      })
+      .to(".muggle", {
+        xPercent: "-=20",
+        yPercent: 5,
+        rotate: -5,
+      })
+      .to(".muggle", {
+        xPercent: "-=20",
+        yPercent: -5,
+        rotate: 5,
+      })
+      .to(".muggle", {
+        xPercent: "-=20",
+        yPercent: 5,
+        rotate: -5,
+      })
+      .to(".muggle", {
+        xPercent: "-=20",
+        yPercent: -5,
+        rotate: 5,
+      })
+      .to(".muggle", {
+        xPercent: "-=20",
+        yPercent: 5,
+        rotate: -5,
+      })
+      .to(".muggle", {
+        xPercent: "-=20",
+        yPercent: -5,
+        rotate: 5,
+      })
+      .to(".muggle", {
+        xPercent: "-=20",
+        yPercent: 5,
+        rotate: -5,
+        opacity:0.8,
+      })
+      .to(".muggle", {
+        xPercent: "-=20",
+        yPercent: -5,
+        rotate: 5,
+        opacity:0.6,
+      })
+      .to(".muggle", {
+        xPercent: "-=20",
+        yPercent: 5,
+        rotate: -5,
+        opacity:0.4
+      })
+      .to(".muggle", {
+        xPercent: "-=20",
+        yPercent: -5,
+        rotate: 5,
+        opacity:0.2,
+      })
+      .to(".muggle", {xPercent: "-=20",
+        yPercent: 5,
+        rotate: -5,
+        opacity:0,
+      })
+      ;
+    scrollAt += 800;
+
 
 
   },
@@ -413,12 +629,25 @@ gsap.to(".village",{
   z-index: 50;
 }
 
-.village{
+.village {
   opacity: 0;
   position: absolute;
-  left:0px;
-  top:100%;
-  width:100%;
-  height:auto;
+  right: 0px;
+  top: 100%;
+  width: 200%;
+  height: 150%;
+}
+
+.muggle{
+  opacity: 0;
+  height:70%;
+  position:absolute;
+  right:-20%;
+  bottom:0%;
+
+}
+
+.character#muggle{
+  transform:scaleX(-1);
 }
 </style>
