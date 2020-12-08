@@ -73,6 +73,7 @@ scrollAt = 0;
 let parts = [1, 2800, 4800];
 let speed = [0, 10, 20]
 let index = 1;
+let audioPlay = false;
 
 //var lastScene = 0;
 //var activeScene = 1;
@@ -533,7 +534,10 @@ export default {
         var snd = document.getElementById("testAudio");
         index = index + 1;
         nextScene = nextScene + 1;
-        snd.play();
+        if(audioPlay == false){
+          snd.play();
+          audioPlay = true;
+        } 
       } else {
         console.log("End of the Story");
         console.log(elem);
