@@ -71,6 +71,8 @@ gsap.registerPlugin(ScrollToPlugin);
 let scrollAt;
 scrollAt = 0;
 let parts = [1, 2800, 4800];
+let speed = [0, 10, 20]
+let index = 1;
 
 //var lastScene = 0;
 //var activeScene = 1;
@@ -525,15 +527,18 @@ export default {
       var elem = document.getElementById("scene" + nextScene);
       console.log(elem);
       if (elem != null) {
-        gsap.to(window, { duration: 10, scrollTo: 2800 });
+        gsap.to(window, { duration: speed[index], scrollTo: parts[index] });
         //lastScene = activeScene;
         //activeScene = nextScene;
         var snd = document.getElementById("testAudio");
+        index = index + 1;
+        nextScene = nextScene + 1;
         snd.play();
       } else {
         console.log("End of the Story");
+        console.log(elem);
       }
-      console.log(scrollAt);
+      console.log("this is the Scrollpoint" + scrollAt);
     },
   },
 };
