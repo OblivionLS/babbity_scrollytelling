@@ -10,9 +10,8 @@
     <button v-on:click="scrollDown" id="button" class="btn">Klick Me</button>
   </div>
   <audio id="testAudio">
-    <source src="../assets/audio/100_full_audio.mp3" type="audio/mpeg">
+    <source src="../assets/audio/100_full_audio.mp3" type="audio/mpeg" />
   </audio>
-
 
   <div class="scene1" style="z-index: 2" id="scene1">
     <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang1" />
@@ -58,6 +57,7 @@
       />
     </div>
   </div>
+  <div class="scene3" id="scene3"></div>
 </template>
 
 <script>
@@ -70,8 +70,8 @@ gsap.registerPlugin(ScrollToPlugin);
 
 let scrollAt;
 scrollAt = 0;
-let parts = [1, 2800, 4800];
-let speed = [0, 10, 20]
+let parts = [1, 3500, 5500, 8500];
+let speed = [0, 10, 20,10];
 let index = 1;
 
 //var lastScene = 0;
@@ -81,49 +81,48 @@ var nextScene = 1;
 
 export default {
   mounted: function () {
-
-
-
     //=========================================================
     //Button Animation
     //=========================================================
     for (let i = 1; i < parts.length; i++) {
-      gsap.fromTo(".btn", {yPercent: 0,
-            opacity: 1,},{
-        scrollTrigger: {
-          start: parts[i],
-          end: "+=500",
-          trigger: ".btn",
-          scrub: 1,
-          markers: {
-            startColor: "var(--invisible)",
-            endColor: "var(--invisible)",
-          },
-        },
-
-        yPercent: 100,
-        opacity: 0,
-      });
-        gsap.fromTo(
-          ".btn",
-          { yPercent: 100, opacity: 0 },
-          {
-            scrollTrigger: {
-              start: parts[i] - 500,
-              end: "+=500",
-              trigger: ".btn",
-              scrub: 1,
-              markers: {
-                startColor: "var(--invisible)",
-                endColor: "var(--invisible)",
-              },
+      gsap.fromTo(
+        ".btn",
+        { yPercent: 0, opacity: 1 },
+        {
+          scrollTrigger: {
+            start: parts[i],
+            end: "+=500",
+            trigger: ".btn",
+            scrub: 1,
+            markers: {
+              startColor: "var(--invisible)",
+              endColor: "var(--invisible)",
             },
+          },
 
-            yPercent: 0,
-            opacity: 1,
-          }
-        );
-      
+          yPercent: 100,
+          opacity: 0,
+        }
+      );
+      gsap.fromTo(
+        ".btn",
+        { yPercent: 100, opacity: 0 },
+        {
+          scrollTrigger: {
+            start: parts[i] - 500,
+            end: "+=500",
+            trigger: ".btn",
+            scrub: 1,
+            markers: {
+              startColor: "var(--invisible)",
+              endColor: "var(--invisible)",
+            },
+          },
+
+          yPercent: 0,
+          opacity: 1,
+        }
+      );
     }
 
     //=========================================================
@@ -153,8 +152,10 @@ export default {
     scrollAt += 500;
 
     //fist button animation.
-    gsap.fromTo(".btn", {yPercent: 0,
-            opacity: 1,},{
+    gsap.fromTo(
+      ".btn",
+      { yPercent: 0, opacity: 1 },
+      {
         scrollTrigger: {
           start: 100,
           end: "+=500",
@@ -168,7 +169,8 @@ export default {
 
         yPercent: 100,
         opacity: 0,
-      });
+      }
+    );
 
     gsap.to(".hill1", {
       scrollTrigger: {
@@ -324,6 +326,65 @@ export default {
       });
     scrollAt += 800;
     console.log(scrollAt);
+
+    let tlk = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".koenig",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+
+    tlk.fromTo(
+      "koenig",
+      {
+        xPercent: -280,
+        rotate: 0,
+      },
+      {
+        xPercent: -280,
+        yPercent: "-=1",
+        rotate: 10,
+      }
+    );
+
+    //King wiggle
+    for (let i = 0; i <= 6; i++) {
+      if (i <= 3) {
+        tlk
+          .to(".koenig", {
+            xPercent: -280,
+            yPercent: "-=1",
+            rotate: 10,
+          })
+          .to(".koenig", {
+            xPercent: -280,
+            yPercent: "-=1",
+            rotate: -10,
+          });
+      } else {
+        tlk
+          .to(".koenig", {
+            xPercent: -280,
+            yPercent: "+=1",
+            rotate: 10,
+          })
+          .to(".koenig", {
+            xPercent: -280,
+            yPercent: "+=1",
+            rotate: -10,
+          });
+      }
+    }
+    scrollAt += 700;
+
+    //insert witch hunter army here
+
     //============================================================
     //Fadeout Scene 1
     //==========================================================
@@ -405,11 +466,14 @@ export default {
       },
     });
 
+    //witch hunter army running through village?
+
     tlVillage
       .fromTo(
         ".village",
         {
           opacity: 0,
+          yPercent: 0,
         },
         {
           opacity: 1,
@@ -437,12 +501,13 @@ export default {
 
     tl1.fromTo(
       ".muggle",
-      { opacity: 0, xPercent: 0, rotate: 0 },
+      { opacity: 0, xPercent: 0, rotate: 0, scale:0.7 },
       {
         opacity: 1,
         xPercent: -100,
         yPercent: -5,
         rotate: 5,
+        scale:1,
       }
     );
     for (let i = 0; i < 6; i++) {
@@ -519,6 +584,225 @@ export default {
     }
 
     scrollAt += 800;
+
+    //=============================================================================
+    // Fade out Scene 2
+    //=============================================================================
+
+    let tlVillage2 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".village",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+
+    tlVillage2.to(".village", {
+      opacity: 0,
+      yPercent: 0,
+      xPercent: 0,
+    });
+    scrollAt += 500;
+    //=============================================================================
+    // Fade out Scene 3
+    //=============================================================================
+    let tlCastle = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=1000",
+        trigger: ".castle",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+    tlCastle.fromTo(
+      ".castle",
+      {
+        opacity: 0,
+        scale: 0.5,
+        yPercent: 0,
+      },
+      {
+        scale: 1,
+        opacity: 1,
+        yPercent: -100,
+      }
+    );
+    tlCastle.to(".castle", {
+      scale: 4,
+      yPercent: "-= 100",
+    });
+
+    scrollAt += 500;
+
+//Auftritt König
+    gsap.fromTo("koenig", {
+       opacity: 0,
+      scale: 1,
+      xPercent: 0,
+      yPercent: 5,
+      rotate: 360,
+    },{
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".koenig",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+      opacity: 0,
+      scale: 1,
+      xPercent: -200,
+      yPercent: 5,
+      rotate: 0,
+    });
+    scrollAt += 500;
+    gsap.to(".koenig", {
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".koenig",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+      opacity: 1,
+      scale: 1,
+      xPercent: -200,
+      yPercent: 5,
+      rotate: 0,
+    });
+    scrollAt += 500;
+
+
+//Auftritt Muggle
+    gsap.to(".muggle", {
+      scrollTrigger: {
+        start: scrollAt - 500,
+        end: "+=500",
+        trigger: ".muggle",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+      opacity: 0,
+      xPercent: -100,
+      yPercent: -5,
+      rotate: 0,
+    });
+    gsap.fromTo(
+      ".muggle",
+      {
+        opacity: 0,
+        xPercent: -100,
+        yPercent: 0,
+        rotate: 0,
+      },
+      {
+        scrollTrigger: {
+          start: scrollAt,
+          end: "+=500",
+          trigger: ".muggle",
+          scrub: 1,
+          markers: {
+            startColor: "var(--invisible)",
+            endColor: "var(--invisible)",
+          },
+        },
+        opacity: 0,
+        xPercent: -100,
+        yPercent: 0,
+        rotate: 0,
+        scale: 0.7,
+      }
+    );
+    scrollAt += 500;
+
+    let tl3 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".muggle",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+    tl3.fromTo(".muggle",
+      {
+        opacity: 0,
+        xPercent: -100,
+        yPercent: 0,
+        rotate: 0,
+        scale: 0.7,
+      },
+      {
+        opacity: 1,
+        xPercent: -100,
+        yPercent: 0,
+        rotate: 0,
+        scale: 0.7,
+      }
+    );
+
+    for (let i = 0; i < 6; i++) {
+      tl3.to(".muggle", {
+          opacity: 1,
+          xPercent: "-=5",
+          yPercent: 0,
+          rotate: 5,
+          scale: 0.7,
+        })
+        tl3.to(".muggle", {
+          opacity: 1,
+          xPercent: "-=5",
+          yPercent: 8,
+          rotate: -5,
+          scale: 0.7,
+        });
+    }
+    tl3.to(".muggle",{
+      opacity: 1,
+          xPercent: "-=0",
+          yPercent: 10,
+          rotate: 0,
+          scale: 0.7,
+    });
+    console.log(tl3)
+    scrollAt +=500;
+
+    console.log(scrollAt);
+
+
+    /*
+fromTo(
+      ".muggle",
+      { opacity: 0, xPercent: 0, rotate: 0 },
+      {
+        opacity: 1,
+        xPercent: -100,
+        yPercent: -5,
+        rotate: 5,
+      }
+    );
+*/
   },
 
   methods: {
