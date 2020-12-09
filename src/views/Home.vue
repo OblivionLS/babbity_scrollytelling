@@ -9,9 +9,18 @@
   <div class="button">
     <button v-on:click="scrollDown" id="button" class="btn">Klick Me</button>
   </div>
-  <audio id="testAudio">
-    <source src="../assets/audio/100_full_audio.mp3" type="audio/mpeg" />
+  <audio id="audio_1">
+    <source src="../assets/audio/111_Part_01.mp3" type="audio/mpeg" />
   </audio>
+
+  <audio id="audio_2">
+    <source src="../assets/audio/112_Part_02.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="audio_3">
+    <source src="../assets/audio/113_Part_03.mp3" type="audio/mpeg" />
+  </audio>
+
 
   <div class="scene1" style="z-index: 2" id="scene1">
     <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang1" />
@@ -72,6 +81,7 @@ let scrollAt;
 scrollAt = 0;
 let parts = [1, 3500, 5500, 8500];
 let speed = [0, 10, 20,10];
+let waitFor = [0, 3, 0, 0];
 let index = 1;
 let audioPlay = false;
 
@@ -812,16 +822,21 @@ fromTo(
       var elem = document.getElementById("scene" + nextScene);
       console.log(elem);
       if (elem != null) {
-        gsap.to(window, { duration: speed[index], scrollTo: parts[index] });
+        gsap.to(window, { delay: waitFor[index], duration: speed[index], scrollTo: parts[index] });
         //lastScene = activeScene;
         //activeScene = nextScene;
-        var snd = document.getElementById("testAudio");
+        var snd = document.getElementById("audio_" + index);
+        var sndOld = document.getElementById("audio_" + (index -1))
         index = index + 1;
         nextScene = nextScene + 1;
         if(audioPlay == false){
+          snd.volume = 0.4; 
           snd.play();
           audioPlay = true;
-        } 
+        } else {
+          sndOld.pause();
+          snd.play();
+        }
       } else {
         console.log("End of the Story");
         console.log(elem);

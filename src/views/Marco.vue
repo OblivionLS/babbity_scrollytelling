@@ -10,15 +10,15 @@
     <button v-on:click="scrollDown" id="button" class="btn">Klick Me</button>
   </div>
   <audio id="audio_1">
-    <source src="../assets/audio/101_Cut_till_Head.mp3" type="audio/mpeg" />
+    <source src="../assets/audio/111_Part_01.mp3" type="audio/mpeg" />
   </audio>
 
   <audio id="audio_2">
-    <source src="../assets/audio/100_full_audio.mp3" type="audio/mpeg" />
+    <source src="../assets/audio/112_Part_02.mp3" type="audio/mpeg" />
   </audio>
 
   <audio id="audio_3">
-    <source src="../assets/audio/002_Rabbity_Stump.mp3" type="audio/mpeg" />
+    <source src="../assets/audio/113_Part_03.mp3" type="audio/mpeg" />
   </audio>
 
   <div class="scene1" style="z-index: 2" id="scene1">
@@ -80,7 +80,7 @@ let scrollAt;
 scrollAt = 0;
 let parts = [1, 3500, 5500, 8500];
 let speed = [0, 10, 20,10];
-let waitFor = [0, 2, 0, 0];
+let waitFor = [0, 3, 0, 0];
 let index = 1;
 let audioPlay = false;
 
@@ -832,6 +832,7 @@ fromTo(
         index = index + 1;
         nextScene = nextScene + 1;
         if(audioPlay == false){
+          snd.volume = 0.4; 
           snd.play();
           audioPlay = true;
         } else {
