@@ -47,9 +47,17 @@
     </div>
 
     <div class="front elements">
-    <div class="tree"></div>
+      <div class="tree"></div>
+    </div>
+
+    <div class="elements wand">
+      <div class="wand">
+        <img src="../assets/break.png" alt="break effect" class="break" />
+        <img src="../assets/twig.png" alt="wand" class="wandimg" />
+      </div>
     </div>
   </div>
+
   <div class="scene2" id="scene2">
     <div class="elements">
       <img
@@ -70,9 +78,12 @@
     </div>
   </div>
   <div class="scene3" id="scene3"></div>
-  <div class="scene4" id="scene4" style="z-index:90">
-    
+  <div class="scene4" id="scene4" style="z-index: 90">
+    <div class="elements character">
+      <img src="../assets/muggle.png" alt="muggleRight" class="muggle2" />
+    </div>
   </div>
+  <div class="scene5"></div>
 </template>
 
 <script>
@@ -824,25 +835,21 @@ export default {
     //=============================================================================
     let tlc = gsap.timeline({
       scrollTrigger: {
-          start: scrollAt,
-          end: "+=500",
-          trigger: ".castle",
-          scrub: 1,
-          markers: {
-            startColor: "var(--invisible)",
-            endColor: "var(--invisible)",
-          },
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".castle",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
         },
+      },
     });
-    tlc.to(
-      ".castle",
-      {
-        
-        opacity: 0,
-        scale: 1,
-        yPercent: 0,
-      }
-    );
+    tlc.to(".castle", {
+      opacity: 0,
+      scale: 1,
+      yPercent: 0,
+    });
     //king
     let tl4 = gsap.timeline({
       scrollTrigger: {
@@ -858,7 +865,7 @@ export default {
     });
     tl4.to(
       ".koenig",
-      
+
       {
         opacity: 0,
         scale: 1,
@@ -881,16 +888,13 @@ export default {
         },
       },
     });
-    tl5.to(
-      ".muggle",
-      {
-        opacity: 0,
-        xPercent: 0,
-        yPercent: 0,
-        rotate: 0,
-        scale: 1,
-      }
-    );
+    tl5.to(".muggle", {
+      opacity: 0,
+      xPercent: 0,
+      yPercent: 0,
+      rotate: 0,
+      scale: 1,
+    });
     scrollAt += 500;
     //=============================================================================
     // Fade in Scene 4
@@ -916,7 +920,6 @@ export default {
       yPercent: -90,
     });
 
-
     let tl7 = gsap.timeline({
       scrollTrigger: {
         start: scrollAt,
@@ -929,10 +932,93 @@ export default {
         },
       },
     });
-    tl7.to(".tree",{
-      opacity:1,
+    tl7.to(".tree", {
+      opacity: 1,
       xPercent: 100,
+    });
+
+    let tl8 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".wandimg",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+
+    tl8.to(".wandimg", {
+      x: window.innerWidth,
+    });
+
+    scrollAt += 500;
+
+    let tl9 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".muggle",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+
+    tl9.fromTo(
+      ".muggle2",
+      {
+        yPercent: 0,
+        xPercent: 0,
+        rotation: 0,
+        opacity: 0,
+      },
+      {
+        xPercent: -100,
+        yPercent: 5,
+        opacity: 1,
+      }
+    );
+
+    for (let i = 0; i < 8; i++) {
+      tl9.to(".muggle2", {
+        xPercent: "-=10",
+        yPercent: -5,
+      });
+      tl9.to(".muggle2", {
+        xPercent: "-=10",
+        yPercent: 0,
+      });
+    }
+    scrollAt += 500;
+
+    let tl10 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=50",
+        trigger: ".break",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+
+    
+    tl10.to(".wandimg",{
+      rotation:20,
+      xPercent: 10
     })
+
+    tl10.to(".break",{
+      opacity:1,
+    });
+
 
     //=============================================================================
     // Fade in Scene 5
@@ -968,6 +1054,34 @@ export default {
 </script>
 
 <style scoped>
+.wand {
+  z-index: 75;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+
+.break {
+  position: absolute;
+  width: 10%;
+  height: auto;
+  left: 5%;
+  top: 40%;
+  z-index: 76;
+  opacity: 0;
+}
+
+.wandimg {
+  position: absolute;
+  width: 10%;
+  height: auto;
+  left: -90%;
+  top: 40%;
+  opacity: 1;
+}
+
 #title {
   top: 0px;
 }
@@ -1113,14 +1227,23 @@ button:focus {
   outline: none;
 }
 
-.elements .tree{
+.elements .tree {
   background-image: url("../assets/Tree1_white.png");
-  height:100%;
-  width:100%;
-  overflow:auto;
+  background-size: auto 100%;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
   position: absolute;
-  top:0px;
-  left:-100%;
+  top: 0px;
+  left: -100%;
   z-index: 90;
+  opacity: 0;
+}
+
+.muggle2 {
+  height: 70%;
+  position: absolute;
+  right: -10%;
+  bottom: 5%;
 }
 </style>
