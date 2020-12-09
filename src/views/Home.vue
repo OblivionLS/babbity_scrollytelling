@@ -21,7 +21,6 @@
     <source src="../assets/audio/113_Part_03.mp3" type="audio/mpeg" />
   </audio>
 
-
   <div class="scene1" style="z-index: 2" id="scene1">
     <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang1" />
     <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang2" />
@@ -46,6 +45,10 @@
       <img src="../assets/garden_shaded.png" alt="garden" class="garden" />
       <div class="overlay" style="z-index: 900"></div>
     </div>
+
+    <div class="front elements">
+    <div class="tree"></div>
+    </div>
   </div>
   <div class="scene2" id="scene2">
     <div class="elements">
@@ -67,6 +70,9 @@
     </div>
   </div>
   <div class="scene3" id="scene3"></div>
+  <div class="scene4" id="scene4" style="z-index:90">
+    
+  </div>
 </template>
 
 <script>
@@ -80,8 +86,7 @@ gsap.registerPlugin(ScrollToPlugin);
 let scrollAt;
 scrollAt = 0;
 let parts = [1, 3500, 5500, 8500];
-let speed = [0, 10, 20,10];
-let waitFor = [0, 3, 0, 0];
+let speed = [0, 10, 20, 10];
 let index = 1;
 let audioPlay = false;
 
@@ -137,8 +142,11 @@ export default {
     }
 
     //=========================================================
-    //Vorhang Animation
+    //Vorhang Animation / Scene 1
     //=========================================================
+
+    //Scene 1 -> foolish king that want's to be the only wizard
+
     gsap.to(".vorhang1", {
       scrollTrigger: {
         start: "top top",
@@ -399,6 +407,7 @@ export default {
     //============================================================
     //Fadeout Scene 1
     //==========================================================
+
     gsap.fromTo(
       ".garden",
       {
@@ -464,6 +473,9 @@ export default {
     //=============================================================================
     // Fade In Scene 2
     //=============================================================================
+
+    //Only one who dares to teach the king magic is the Muggle
+
     let tlVillage = gsap.timeline({
       scrollTrigger: {
         start: scrollAt,
@@ -512,13 +524,13 @@ export default {
 
     tl1.fromTo(
       ".muggle",
-      { opacity: 0, xPercent: 0, rotate: 0, scale:0.7 },
+      { opacity: 0, xPercent: 0, rotate: 0, scale: 0.7 },
       {
         opacity: 1,
         xPercent: -100,
         yPercent: -5,
         rotate: 5,
-        scale:1,
+        scale: 1,
       }
     );
     for (let i = 0; i < 6; i++) {
@@ -620,8 +632,11 @@ export default {
     });
     scrollAt += 500;
     //=============================================================================
-    // Fade out Scene 3
+    // Fade in Scene 3
     //=============================================================================
+
+    //Muggle presents himself to the king and gets his gold etc.
+
     let tlCastle = gsap.timeline({
       scrollTrigger: {
         start: scrollAt,
@@ -654,30 +669,34 @@ export default {
 
     scrollAt += 500;
 
-//Auftritt König
-    gsap.fromTo("koenig", {
-       opacity: 0,
-      scale: 1,
-      xPercent: 0,
-      yPercent: 5,
-      rotate: 360,
-    },{
-      scrollTrigger: {
-        start: scrollAt,
-        end: "+=500",
-        trigger: ".koenig",
-        scrub: 1,
-        markers: {
-          startColor: "var(--invisible)",
-          endColor: "var(--invisible)",
-        },
+    //Auftritt König
+    gsap.fromTo(
+      "koenig",
+      {
+        opacity: 0,
+        scale: 1,
+        xPercent: 0,
+        yPercent: 5,
+        rotate: 360,
       },
-      opacity: 0,
-      scale: 1,
-      xPercent: -200,
-      yPercent: 5,
-      rotate: 0,
-    });
+      {
+        scrollTrigger: {
+          start: scrollAt,
+          end: "+=500",
+          trigger: ".koenig",
+          scrub: 1,
+          markers: {
+            startColor: "var(--invisible)",
+            endColor: "var(--invisible)",
+          },
+        },
+        opacity: 0,
+        scale: 1,
+        xPercent: -200,
+        yPercent: 5,
+        rotate: 0,
+      }
+    );
     scrollAt += 500;
     gsap.to(".koenig", {
       scrollTrigger: {
@@ -698,8 +717,7 @@ export default {
     });
     scrollAt += 500;
 
-
-//Auftritt Muggle
+    //Auftritt Muggle
     gsap.to(".muggle", {
       scrollTrigger: {
         start: scrollAt - 500,
@@ -756,7 +774,8 @@ export default {
         },
       },
     });
-    tl3.fromTo(".muggle",
+    tl3.fromTo(
+      ".muggle",
       {
         opacity: 0,
         xPercent: -100,
@@ -775,45 +794,151 @@ export default {
 
     for (let i = 0; i < 6; i++) {
       tl3.to(".muggle", {
-          opacity: 1,
-          xPercent: "-=5",
-          yPercent: 0,
-          rotate: 5,
-          scale: 0.7,
-        })
-        tl3.to(".muggle", {
-          opacity: 1,
-          xPercent: "-=5",
-          yPercent: 8,
-          rotate: -5,
-          scale: 0.7,
-        });
+        opacity: 1,
+        xPercent: "-=5",
+        yPercent: 0,
+        rotate: 5,
+        scale: 0.7,
+      });
+      tl3.to(".muggle", {
+        opacity: 1,
+        xPercent: "-=5",
+        yPercent: 8,
+        rotate: -5,
+        scale: 0.7,
+      });
     }
-    tl3.to(".muggle",{
+    tl3.to(".muggle", {
       opacity: 1,
-          xPercent: "-=0",
-          yPercent: 10,
-          rotate: 0,
-          scale: 0.7,
+      xPercent: "-=0",
+      yPercent: 10,
+      rotate: 0,
+      scale: 0.7,
     });
-    console.log(tl3)
-    scrollAt +=500;
+    scrollAt += 500;
 
     console.log(scrollAt);
 
-
-    /*
-fromTo(
-      ".muggle",
-      { opacity: 0, xPercent: 0, rotate: 0 },
+    //=============================================================================
+    // Fade out Scene 3
+    //=============================================================================
+    let tlc = gsap.timeline({
+      scrollTrigger: {
+          start: scrollAt,
+          end: "+=500",
+          trigger: ".castle",
+          scrub: 1,
+          markers: {
+            startColor: "var(--invisible)",
+            endColor: "var(--invisible)",
+          },
+        },
+    });
+    tlc.to(
+      ".castle",
       {
-        opacity: 1,
-        xPercent: -100,
-        yPercent: -5,
-        rotate: 5,
+        
+        opacity: 0,
+        scale: 1,
+        yPercent: 0,
       }
     );
-*/
+    //king
+    let tl4 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".koenig",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+    tl4.to(
+      ".koenig",
+      
+      {
+        opacity: 0,
+        scale: 1,
+        xPercent: 0,
+        yPercent: 0,
+        rotate: 0,
+      }
+    );
+
+    //muggle
+    let tl5 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".muggle",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+    tl5.to(
+      ".muggle",
+      {
+        opacity: 0,
+        xPercent: 0,
+        yPercent: 0,
+        rotate: 0,
+        scale: 1,
+      }
+    );
+    scrollAt += 500;
+    //=============================================================================
+    // Fade in Scene 4
+    //=============================================================================
+
+    //Muggle gets a twig instead of a wand
+
+    let tl6 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".garden",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+
+    tl6.to(".garden", {
+      opacity: 1,
+      yPercent: -90,
+    });
+
+
+    let tl7 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".tree",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+    tl7.to(".tree",{
+      opacity:1,
+      xPercent: 100,
+    })
+
+    //=============================================================================
+    // Fade in Scene 5
+    //=============================================================================
+
+    //Dancing arround in the garden when babbity appears
   },
 
   methods: {
@@ -822,20 +947,15 @@ fromTo(
       var elem = document.getElementById("scene" + nextScene);
       console.log(elem);
       if (elem != null) {
-        gsap.to(window, { delay: waitFor[index], duration: speed[index], scrollTo: parts[index] });
+        gsap.to(window, { duration: speed[index], scrollTo: parts[index] });
         //lastScene = activeScene;
         //activeScene = nextScene;
-        var snd = document.getElementById("audio_" + index);
-        var sndOld = document.getElementById("audio_" + (index -1))
+        var snd = document.getElementById("testAudio");
         index = index + 1;
         nextScene = nextScene + 1;
-        if(audioPlay == false){
-          snd.volume = 0.4; 
+        if (audioPlay == false) {
           snd.play();
           audioPlay = true;
-        } else {
-          sndOld.pause();
-          snd.play();
         }
       } else {
         console.log("End of the Story");
@@ -991,5 +1111,16 @@ button {
 button:focus {
   border: none;
   outline: none;
+}
+
+.elements .tree{
+  background-image: url("../assets/Tree1_white.png");
+  height:100%;
+  width:100%;
+  overflow:auto;
+  position: absolute;
+  top:0px;
+  left:-100%;
+  z-index: 90;
 }
 </style>
