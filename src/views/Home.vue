@@ -59,7 +59,7 @@
 
     <div class="elements character" id="muggle">
       <img
-        src="../assets/babbity.png"
+        src="../assets/muggle.png"
         alt="Muggle"
         class="muggle"
         style="transform: scaleX(-1)"
