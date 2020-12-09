@@ -1,70 +1,88 @@
 <template>
-   <h1 class="header-section">Scroll to construct a shoe</h1>
-
-<section class="shoe">
-  <img src="https://uploads-ssl.webflow.com/5d3ee7c0c89f6a2d122c0695/5d84da29b46cb1403688b139_outsole.png" class="outsole piece" alt="outsole">
-  <img src="https://uploads-ssl.webflow.com/5d3ee7c0c89f6a2d122c0695/5d84d9ecb32e46bc5f1f8a8a_component.png?" class="heel piece" alt="heel">
-  <img src="https://uploads-ssl.webflow.com/5d3ee7c0c89f6a2d122c0695/5d84da293b7f75e5a42bcacd_midsole.png?" class="midsole piece" alt="midsole">
-</section>
-
-<h1 class="header-section">Cool, right?</h1>
-
-
-
-
-<header>
-   <a href="https://greensock.com/scrolltrigger">
-     <img class="greensock-icon" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/scroll-trigger-logo-light.svg" width="200" height="64" />
-  </a> 
-</header>
-<p>Marcos page</p>
+<canvas id="progress" width="500" height="100"></canvas>
+<audio id="audio" ontimeupdate="updateBar"
+  src="../assets/audio/000_Test.mp3">
+</audio>
+<br>
+<span id="current-time"></span> /
+<span id="duration"></span>
+<br>
+<button id="audioControl" v-on:click="togglePlaying">Play</button>
 </template>
 
-<script>
-import { gsap } from "gsap";
+<script defer>
+var canvasWidth = 500;
+var audioEl = document.getElementById("audio")
+var canvas = document.getElementById("progress")
+var ctrl = document.getElementById("audioControl")
 
-gsap.timeline({
-  scrollTrigger: {
-    trigger: ".shoe",
-    start: "center center",
-    end: "bottom top",
-    scrub: true,
-    pin: true
+audioEl.addEventListener('loadedmetadata', function() {
+  var duration = audioEl.duration
+  var currentTime = audioEl.currentTime
+  document.getElementById("duration").innerHTML = this.convertElapsedTime(duration)
+  document.getElementById("current-time").innerHTML = this.convertElapsedTime(currentTime)
+  canvas.fillRect(0, 0, canvasWidth, 50);
+});
+
+
+export default {  
+  methods:{
+
+togglePlaying:function() {
+
+  var play = ctrl.innerHTML === 'Play'
+  var method
+
+  if (play) {
+    ctrl.innerHTML = 'Pause'
+    method = 'play'
+  } else {
+    ctrl.innerHTML = 'Play'
+    method = 'pause'
   }
-})
-  .from(".midsole",  { y: innerHeight * 1.5 })
-  .from(".outsole", { y: innerHeight * 1.5 });
+
+  audioEl[method]()
+
+},
+
+convertElapsedTime: function(inputSeconds) {
+  var seconds = Math.floor(inputSeconds % 60)
+  if (seconds < 10) {
+    seconds = "0" + seconds
+  }
+  var minutes = Math.floor(inputSeconds / 60)
+  return minutes + ":" + seconds
+},
+
+updateBar:function() {
+  canvas.clearRect(0, 0, canvasWidth, 50)
+  canvas.fillStyle = "#000";
+  canvas.fillRect(0, 0, canvasWidth, 50)
+
+  
+  var currentTime = audioEl.currentTime
+  var ElTime = this.convertElapsedTime(currentTime)
+  var duration = audioEl.duration
+  
+  if (currentTime === duration) {
+    ctrl.innerHTML = "Play"
+  }
+  
+  document.getElementById("current-time").innerHTML = ElTime
+  
+  var percentage = currentTime / duration
+  var progress = (canvasWidth * percentage)
+  canvas.fillStyle = "#FF0000"
+  canvas.fillRect(0, 0, progress, 50)
+},
+}
+}
+
+
 </script>
 
 <style scoped>
-body { 
-  background-color: #a62e91;
-  color: white;
-}
-
-
-.shoe {
-  position: relative;
-  padding: 20px;
-}
-.piece:not(.outsole) {
-  position: absolute;
-  bottom: 7vw;
-}
-.midsole {
-  width: 89%;
-  left: 5%;
-}
-.heel {
-  width: 41.8013857%;
-  left: 6%;
-}
-.outsole {
-  width: 100%;
-  position: relative;
-}
-
-h1, h2, p, li {
-  max-width: none;
+* {
+  text-align: center;
 }
 </style>
