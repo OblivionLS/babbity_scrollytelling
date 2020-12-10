@@ -32,7 +32,7 @@
       <div class="overlay" style="z-index: 9"></div>
     </div>
 
-    <div class="character elements">
+    <div class="character elements" id = "king">
       <img src="../assets/koenig.png" alt="koenig" class="koenig" />
     </div>
 
@@ -49,6 +49,15 @@
     <div class="front elements">
       <div class="tree"></div>
     </div>
+
+    <div class="front elements">
+      <div class="elements rabbity">
+      <img src="../assets/babbity.png" alt="babbity" class="babbity">
+    </div>
+      <div class="tree2"></div>
+    </div>
+
+    
 
     <div class="elements wand">
       <div class="wand">
@@ -954,6 +963,7 @@ export default {
     tl8.fromTo(".wandimg",{
       opacity:0,
       x:0,
+      rotation:0,
     }, {
       opacity:1,
       x: window.innerWidth,
@@ -1071,7 +1081,6 @@ export default {
       yPercent: 10,
     });
 
-    scrollAt += 300;
 
     let tl11 = gsap.timeline({
       scrollTrigger: {
@@ -1085,6 +1094,7 @@ export default {
         },
       },
     });
+    scrollAt += 500;
     tl11.fromTo(
       ".koenig",
       {
@@ -1125,9 +1135,11 @@ export default {
       tl11.fromTo(".wandimg", {
         rotation: 20,
         x: window.innerWidth + window.innerWidth/4,
+        opacity:1,
       },{
         rotation: 605,
         x: window.innerWidth + window.innerWidth/2,
+        opacity:1,
       });
       scrollAt += 500;
       console.log(scrollAt);
@@ -1135,13 +1147,135 @@ export default {
     //=============================================================================
     // Fade out Scene 4
     //=============================================================================
+    let tl40 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".muggle",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+    scrollAt += 500;
 
+    tl40.fromTo(".wandimg",{
+      opacity:1,
+       rotation: 605,
+        x: window.innerWidth + window.innerWidth/2,
+    },{
+      opacity:0,
+    })
+
+    tl40.to(".muggle2",{
+      opacity:0,
+      xPercent:0,
+      yPercent:0,
+      rotation:0,
+    });
+
+    tl40.to(".elements#muggle2",{
+      scaleX:1,
+    })
+
+    tl40.to(".koenig", {
+      opacity:0,
+      xPercent:0,
+      yPercent:0
+    });
+
+    tl40.to(".garden", {
+      opacity:0,
+      yPercent:0,
+    });
 
     //=============================================================================
     // Fade in Scene 5
     //=============================================================================
 
     //Dancing arround in the garden when babbity appears
+
+    let tl50 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".muggle",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+    scrollAt += 500;
+
+    tl50.to(".castle",{
+      opacity:1,
+      yPercent:-100,
+      scale:1,
+    });
+
+    tl50.to(".castle", {
+      scale:2.5,
+      yPercent:-150,
+    })
+
+    tl50.to(".garden", {
+      yPercent: -100,
+      opacity:1,
+    });
+
+    tl50.to(".tree2",{
+      xPercent: 100,
+    });
+
+    tl50.to(".babbity",{
+      x: -window.innerWidth,
+    });
+
+   let tl51 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".muggle",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+    let tl52 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".muggle",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+    scrollAt += 500;
+
+    //.elements#muggle2
+    //.elements#king
+    tl51.to(".koenig",{
+      x: -window.innerWidth/2,
+      opacity:1,
+      rotation:0,
+    });
+
+    tl52.to(".muggle", {
+      x: -window.innerWidth/2,
+      opacity:1,
+      rotation:0,
+      scale: 0.7,
+    })
+
   },
 
   methods: {
@@ -1365,6 +1499,33 @@ button:focus {
   left: -100%;
   z-index: 90;
   opacity: 0;
+}
+
+.elements .tree2 {
+  background-image: url("../assets/tree1_noroots_white.png");
+  background-size: auto 100%;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  position: absolute;
+  top: 0px;
+  left: -100%;
+  z-index: 90;
+  opacity: 1;
+}
+
+.elements .babbity{
+  opacity: 1;
+  height: 50%;
+  position: absolute;
+  right: -99%;
+  bottom: 0%;
+  z-index: 85;
+
+}
+
+.elements.rabbity{
+  transform: scaleX(-1);
 }
 
 .muggle2 {
