@@ -951,7 +951,11 @@ export default {
       },
     });
 
-    tl8.to(".wandimg", {
+    tl8.fromTo(".wandimg",{
+      opacity:0,
+      x:0,
+    }, {
+      opacity:1,
       x: window.innerWidth,
     });
 
@@ -1010,28 +1014,121 @@ export default {
       },
     });
 
-    tl10.to(".break",{
-      opacity:1,
-    });
-    
-    tl10.to(".wandimg",{
-      rotation:20,
-      xPercent: 10,
+    tl10.to(".break", {
+      opacity: 1,
     });
 
-   
+    tl10.to(".wandimg", {
+      rotation: 20,
+      xPercent: 10,
+      duration: 0.5,
+    });
 
     tl10.to(".break", {
-      opacity:0,
+      opacity: 0,
+      duration: 0.5,
     });
 
     tl10.to(".tree", {
       xPercent: 0,
     });
 
+    tl10.fromTo(
+      ".muggle2",
+      {
+        xPercent: -260,
+        yPercent: 0,
+      },
+      {
+        xPercent: -270,
+        yPercent: -5,
+      }
+    );
+
+    tl10.to(".wandimg", {
+      x: window.innerWidth + window.innerWidth / 4,
+    });
+
     tl10.to(".elements#muggle2", {
       scaleX: -1,
     });
+
+    for (let i = 0; i < 8; i++) {
+      tl10.to(".muggle2", {
+        xPercent: "+=10",
+        yPercent: -5,
+      });
+      tl10.to(".muggle2", {
+        xPercent: "+=10",
+        yPercent: 0,
+      });
+    }
+
+    tl10.to(".muggle2", {
+      scale: 0.7,
+      xPercent: -112,
+      yPercent: 10,
+    });
+
+    scrollAt += 300;
+
+    let tl11 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=50",
+        trigger: ".break",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+    tl11.fromTo(
+      ".koenig",
+      {
+        opacity: 0,
+        xPercent: 0,
+        yPercent: 0,
+        rotate: 0,
+      },
+      {
+        xPercent: -100,
+        yPercent: -5,
+        opacity: 1,
+        rotate: 5,
+      }
+    );
+    for (let i = 0; i < 8; i++) {
+      tl11.to(".koenig", {
+        xPercent: "-=5",
+        yPercent: 0,
+        opacity: 1,
+        rotate: -5,
+      });
+
+      tl11.to(".koenig", {
+        xPercent: "-=5",
+        yPercent: -5,
+        opacity: 1,
+        rotate: 5,
+      });
+    }
+    tl11.to(".koenig", {
+        xPercent: "-=5",
+        yPercent: 0,
+        opacity: 1,
+        rotate: 0,
+      });
+
+      tl11.fromTo(".wandimg", {
+        rotation: 20,
+        x: window.innerWidth + window.innerWidth/4,
+      },{
+        rotation: 605,
+        x: window.innerWidth + window.innerWidth/2,
+      });
+
 
     //=============================================================================
     // Fade in Scene 5
@@ -1046,16 +1143,20 @@ export default {
       var elem = document.getElementById("scene" + nextScene);
       console.log(elem);
       if (elem != null) {
-        gsap.to(window, { delay: waitFor[index], duration: speed[index], scrollTo: parts[index] });
+        gsap.to(window, {
+          delay: waitFor[index],
+          duration: speed[index],
+          scrollTo: parts[index],
+        });
         //lastScene = activeScene;
         //activeScene = nextScene;
         var snd = document.getElementById("audio_" + index);
-        var sndOld = document.getElementById("audio_" + (index -1));
-        
+        var sndOld = document.getElementById("audio_" + (index - 1));
+
         index = index + 1;
         nextScene = nextScene + 1;
         if (audioPlay == false) {
-          snd.volume = 0.4; 
+          snd.volume = 0.4;
           snd.play();
           audioPlay = true;
         } else {
