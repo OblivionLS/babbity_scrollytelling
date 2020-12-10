@@ -28,6 +28,8 @@ audioEl.addEventListener('loadedmetadata', function() {
 export default {  
   methods:{
 
+    
+
 togglePlaying:function() {
 
   var play = ctrl.innerHTML === 'Play'

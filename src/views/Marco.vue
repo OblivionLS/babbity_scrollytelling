@@ -827,7 +827,7 @@ fromTo(
         //lastScene = activeScene;
         //activeScene = nextScene;
         var snd = document.getElementById("audio_" + index);
-        var sndOld = document.getElementById("audio_" + (index -1))
+        var sndOld = document.getElementById("audio_" + (index -1));
 
         index = index + 1;
         nextScene = nextScene + 1;
