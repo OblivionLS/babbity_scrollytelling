@@ -40,6 +40,12 @@
       <img src="../assets/koenig.png" alt="koenig" class="koenig" />
     </div>
 
+    <div class="elements mob">
+      <img src="../assets/Mob.png" alt="mob" class="mob1" />
+      <img src="../assets/Mob.png" alt="mob" class="mob2" />
+      <img src="../assets/Mob.png" alt="mob" class="mob3" />
+    </div>
+
     <div class="schloss elements">
       <div class="overlay" style="z-index: 40"></div>
       <img src="../assets/Castle_shading.png" alt="castle" class="castle" />
@@ -59,6 +65,8 @@
         <img src="../assets/babbity.png" alt="babbity" class="babbity" />
       </div>
       <div class="tree2"></div>
+
+      <img src="../assets/cackle.png" alt="cackle" class="cackle" />
     </div>
 
     <div class="elements wand">
@@ -107,8 +115,8 @@ gsap.registerPlugin(ScrollToPlugin);
 
 let scrollAt;
 scrollAt = 0;
-let parts = [1, 3500, 5500, 8500, 11300, 13000];
-let speed = [0, 10, 20, 10, 10, 10];
+let parts = [1, 4600, 7300, 10300, 13300, 15300];
+let speed = [0, 15, 20, 10, 10, 10];
 let waitFor = [0, 0, 0, 0];
 let index = 1;
 let audioPlay = false;
@@ -423,9 +431,163 @@ export default {
           });
       }
     }
+    scrollAt += 1100;
+
+    //insert witch hunter army here-----------------------------------------------------------------------------------------------------------------------------------
+
+    let tlmob1 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".mob1",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+    let tlmob2 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".mob1",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+    let tlmob3 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=700",
+        trigger: ".mob1",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+      duration: 0.9,
+    });
     scrollAt += 700;
 
-    //insert witch hunter army here
+    tlmob1.fromTo(
+      ".mob1",
+      {
+        x: 0,
+        opacity: 0,
+        rotation: 0,
+      },
+      {
+        x: -window.innerWidth,
+        opacity: 1,
+      }
+    );
+    tlmob2.fromTo(
+      ".mob2",
+      {
+        x: 0,
+        opacity: 0,
+        rotation: 0,
+      },
+      {
+        x: -window.innerWidth,
+        opacity: 1,
+      }
+    );
+    tlmob3.fromTo(
+      ".mob3",
+      {
+        x: 0,
+        opacity: 0,
+        rotation: 0,
+      },
+      {
+        x: -window.innerWidth,
+        opacity: 1,
+      }
+    );
+
+    for (let i = 0; i < 10; i++) {
+      tlmob1
+        .to(".mob1", {
+          x: -window.innerWidth - i * (window.innerWidth / 10),
+          rotation: 5,
+        })
+        .to(".mob1", {
+          x: -window.innerWidth - i * (window.innerWidth / 10),
+          rotation: -5,
+        });
+
+      tlmob2
+        .to(".mob2", {
+          x: -window.innerWidth - i * (window.innerWidth / 10),
+          rotation: -5,
+        })
+        .to(".mob2", {
+          x: -window.innerWidth - i * (window.innerWidth / 10),
+          rotation: 5,
+        });
+
+      tlmob3
+        .to(".mob3", {
+          x: -window.innerWidth - i * (window.innerWidth / 10),
+          rotation: 3,
+        })
+        .to(".mob3", {
+          x: -window.innerWidth - i * (window.innerWidth / 10),
+          rotation: -7,
+        });
+    }
+
+    tlmob1.to(".mob1", {
+      opacity: 0,
+      x: -window.innerWidth * 2,
+      rotation: 0,
+    });
+
+    tlmob2.to(".mob2", {
+      opacity: 0,
+      x: -window.innerWidth * 2,
+      rotation: 0,
+    });
+
+    tlmob3.to(".mob3", {
+      opacity: 0,
+      x: -window.innerWidth * 2,
+      rotation: 0,
+    });
+
+    for (let i = 0; i <= 6; i++) {
+      if (i <= 2) {
+        tlmob3
+          .to(".koenig", {
+            xPercent: -280,
+            yPercent: "-=1",
+            rotate: 5,
+          })
+          .to(".koenig", {
+            xPercent: -280,
+            yPercent: "-=1",
+            rotate: -5,
+          });
+      } else {
+        tlmob3
+          .to(".koenig", {
+            xPercent: -280,
+            yPercent: "+=1",
+            rotate: 5,
+          })
+          .to(".koenig", {
+            xPercent: -280,
+            yPercent: "+=1",
+            rotate: -5,
+          });
+      }
+    }
 
     //============================================================
     //Fadeout Scene 1
@@ -511,27 +673,156 @@ export default {
         },
       },
     });
+    scrollAt += 500;
+
+    tlVillage.fromTo(
+      ".village",
+      {
+        opacity: 0,
+        yPercent: 0,
+      },
+      {
+        opacity: 1,
+        yPercent: -100,
+      }
+    );
 
     //witch hunter army running through village?
 
-    tlVillage
-      .fromTo(
-        ".village",
-        {
-          opacity: 0,
-          yPercent: 0,
+    // Witch hunter mob again ======================================================================================================================================>>>
+    let mob1 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".mob1",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
         },
-        {
-          opacity: 1,
-          yPercent: -100,
-        }
-      )
-      .to(".village", {
-        opacity: 1,
-        xPercent: 50,
-      });
-    scrollAt += 500;
+      },
+    });
+    let mob2 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=500",
+        trigger: ".mob1",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+    });
+    let mob3 = gsap.timeline({
+      scrollTrigger: {
+        start: scrollAt,
+        end: "+=700",
+        trigger: ".mob1",
+        scrub: 1,
+        markers: {
+          startColor: "var(--invisible)",
+          endColor: "var(--invisible)",
+        },
+      },
+      duration: 0.9,
+    });
+    scrollAt += 700;
 
+    mob1.fromTo(
+      ".mob1",
+      {
+        x: 0,
+        opacity: 0,
+        rotation: 0,
+      },
+      {
+        x: -window.innerWidth,
+        opacity: 1,
+      }
+    );
+    mob2.fromTo(
+      ".mob2",
+      {
+        x: 0,
+        opacity: 0,
+        rotation: 0,
+      },
+      {
+        x: -window.innerWidth,
+        opacity: 1,
+      }
+    );
+    mob3.fromTo(
+      ".mob3",
+      {
+        x: 0,
+        opacity: 0,
+        rotation: 0,
+      },
+      {
+        x: -window.innerWidth,
+        opacity: 1,
+      }
+    );
+
+    for (let i = 0; i < 10; i++) {
+      mob1
+        .to(".mob1", {
+          x: -window.innerWidth - i * (window.innerWidth / 10),
+          rotation: 5,
+        })
+        .to(".mob1", {
+          x: -window.innerWidth - i * (window.innerWidth / 10),
+          rotation: -5,
+        });
+
+      mob2
+        .to(".mob2", {
+          x: -window.innerWidth - i * (window.innerWidth / 10),
+          rotation: -5,
+        })
+        .to(".mob2", {
+          x: -window.innerWidth - i * (window.innerWidth / 10),
+          rotation: 5,
+        });
+
+      mob3
+        .to(".mob3", {
+          x: -window.innerWidth - i * (window.innerWidth / 10),
+          rotation: 3,
+        })
+        .to(".mob3", {
+          x: -window.innerWidth - i * (window.innerWidth / 10),
+          rotation: -7,
+        });
+    }
+
+    mob1.to(".mob1", {
+      opacity: 0,
+      x: -window.innerWidth * 2,
+      rotation: 0,
+    });
+
+    mob2.to(".mob2", {
+      opacity: 0,
+      x: -window.innerWidth * 2,
+      rotation: 0,
+    });
+
+    mob3.to(".mob3", {
+      opacity: 0,
+      x: -window.innerWidth * 2,
+      rotation: 0,
+    });
+
+    // Witch hunter mob End ======================================================================================================================================>>>
+
+    tlVillage.to(".village", {
+      opacity: 1,
+      xPercent: 50,
+    });
+    //scrollAt += 200;
     let tl1 = gsap.timeline({
       scrollTrigger: {
         start: scrollAt,
@@ -944,13 +1235,17 @@ export default {
         },
       },
     });
-    tl7.fromTo(".tree",{
-      opacity:0,
-      xPercent:0,
-    }, {
-      opacity: 1,
-      xPercent: 100,
-    });
+    tl7.fromTo(
+      ".tree",
+      {
+        opacity: 0,
+        xPercent: 0,
+      },
+      {
+        opacity: 1,
+        xPercent: 100,
+      }
+    );
 
     let tl8 = gsap.timeline({
       scrollTrigger: {
@@ -1140,7 +1435,7 @@ export default {
 
     tl11.to(
       ".wandimg",
-      
+
       {
         rotation: 605,
         x: window.innerWidth + window.innerWidth / 2,
@@ -1167,13 +1462,12 @@ export default {
     });
     scrollAt += 500;
 
-
     tl40.to(
       ".wandimg",
-      
+
       {
-        rotation:0,
-        x:0,
+        rotation: 0,
+        x: 0,
         opacity: 0,
       }
     );
@@ -1240,13 +1534,29 @@ export default {
       opacity: 1,
     });
 
-    tl50.to(".tree2", {
-      xPercent: 100,
-    });
+    tl50.fromTo(
+      ".tree2",
+      {
+        opacity: 0,
+        xPercent: 0,
+      },
+      {
+        xPercent: 100,
+        opacity: 1,
+      }
+    );
 
-    tl50.to(".babbity", {
-      x: -window.innerWidth,
-    });
+    tl50.fromTo(
+      ".babbity",
+      {
+        x: 0,
+        opacity: 0,
+      },
+      {
+        opacity:1,
+        x: -window.innerWidth,
+      }
+    );
 
     let tl51 = gsap.timeline({
       scrollTrigger: {
@@ -1291,111 +1601,146 @@ export default {
       scale: 0.7,
     });
 
-    gsap.fromTo(
-      ".elements#muggle",
-      {
-        rotate: 0,
-        scaleX: -1,
-      },
-      {
-        rotate: 0,
-        scaleX: -1,
+    
+
+    for (let j = 0; j < 2; j++) {
+      for (let i = 1; i <= 4; i++) {
+        tl52.to(".muggle", {
+          x: -window.innerWidth / 3 - (i * window.innerWidth) / 12,
+          yPercent: -5,
+          rotate: 5,
+        });
+        tl52.to(".muggle", {
+          x: -window.innerWidth / 3 - (i * window.innerWidth) / 12,
+          yPercent: 0,
+          rotate: 0,
+        });
+
+        tl51.to(".koenig", {
+          x: -window.innerWidth / 3 - (i * window.innerWidth) / 12,
+          yPercent: -5,
+          rotation: 5,
+        });
+        tl51.to(".koenig", {
+          x: -window.innerWidth / 3 - (i * window.innerWidth) / 12,
+          yPercent: 0,
+          rotation: 0,
+        });
       }
-    );
 
-  for(let j = 0; j < 2; j++){
-        for (let i = 1; i <= 4; i++) {
-      tl52.to(".muggle", {
-        x: -window.innerWidth / 3 - (i * window.innerWidth) / 12,
-        yPercent: -5,
-        rotate: 5,
+      tl51.to(".koenig", {
+        scaleX: -1,
       });
-      tl52.to(".muggle", {
-        x: -window.innerWidth / 3 - (i * window.innerWidth) / 12,
-        yPercent: 0,
-        rotate: 0,
-      });
-    }
 
-    for (let i = 1; i <= 4; i++) {
-      tl51.to(".koenig", {
-        x: -window.innerWidth / 3 - (i * window.innerWidth) / 12,
-        yPercent: -5,
-        rotation: 5,
-      });
-      tl51.to(".koenig", {
-        x: -window.innerWidth / 3 - (i * window.innerWidth) / 12,
-        yPercent: 0,
+      tl52.to(".muggle", {
         rotation: 0,
+        scaleX: -0.7,
       });
-    }
 
-    tl51.to(".elements#king", {
-      scaleX: -1,
-    });
-    tl52.to(".koenig", {
-      
-     x: -window.innerWidth / 3 ,
-    });
+      for (let i = 1; i <= 4; i++) {
+        tl52.to(".muggle", {
+          x: -window.innerWidth / 3 *2 + (i * window.innerWidth) / 12,
+          yPercent: -5,
+          rotate: 5,
+        });
+        tl52.to(".muggle", {
+          x: -window.innerWidth / 3 *2 + (i * window.innerWidth) / 12,
+          yPercent: 0,
+          rotate: 0,
+        });
 
-    tl51.to(".elements#muggle", {
-      rotate: 0,
-      scaleX: 1,
-    });
-    tl52.to(".muggle", {
-      
-      x: -window.innerWidth / 3 ,
-    });
+        tl51.to(".koenig", {
+          x: -window.innerWidth / 3 *2 + (i * window.innerWidth) / 12,
+          yPercent: -5,
+          rotation: 5,
+        });
+        tl51.to(".koenig", {
+          x: -window.innerWidth / 3 *2 + (i * window.innerWidth) / 12,
+          yPercent: 0,
+          rotation: 0,
+        });
+      }
 
-     for (let i = 1; i <= 4; i++) {
-      tl52.to(".muggle", {
-        x: -window.innerWidth / 3 - (i * window.innerWidth) / 12,
-        yPercent: -5,
-        rotate: 5,
+
+      tl51.to(".koenig", {
+        scaleX: 1,
       });
+
       tl52.to(".muggle", {
-        x: -window.innerWidth / 3 - (i * window.innerWidth) / 12,
-        yPercent: 0,
         rotate: 0,
+        scaleX: 0.7,
       });
     }
 
-    for (let i = 1; i <= 4; i++) {
-      tl51.to(".koenig", {
-        x: -window.innerWidth / 3 - (i * window.innerWidth) / 12,
-        yPercent: -5,
-        rotation: 5,
-      });
-      tl51.to(".koenig", {
-        x: -window.innerWidth / 3 - (i * window.innerWidth) / 12,
-        yPercent: 0,
-        rotation: 0,
-      });
-    }
-
-    tl51.to(".elements#king", {
-      scaleX: 1,
-    });
-    tl52.to(".koenig", {
+for (let i = 1; i <= 2; i++) {
+        tl52.to(".muggle", {
+          x: -window.innerWidth / 3 - (i * window.innerWidth) / 12,
+          yPercent: -5,
+          rotate: 5,
+        });
+        tl52.to(".muggle", {
+          x: -window.innerWidth / 3 - (i * window.innerWidth) / 12,
+          yPercent: 0,
+          rotate: 0,
+        });
       
-      x: -window.innerWidth / 3 ,
-    });
-
-    tl51.to(".elements#muggle", {
-      rotate: 0,
-      scaleX: -1,
-    });
-    tl52.to(".muggle", {
-      
-      x: -window.innerWidth / 3 ,
-    });
-
-    console.log(scrollAt);
-
-  }
+      }
 
 
 
+
+
+     let tl55 = gsap.timeline({
+        scrollTrigger: {
+          start: scrollAt,
+          end: "+=500",
+          trigger: ".muggle",
+          scrub: 1,
+          markers: {
+            startColor: "var(--invisible)",
+            endColor: "var(--invisible)",
+          },
+        },
+      });
+      scrollAt += 500;
+      tl55.fromTo(
+        ".cackle",
+        {
+          opacity: 0,
+          rotation: 0,
+        },
+        {
+          opacity: 1,
+        }
+      );
+
+      for (let i = 0; i < 4; i++) {
+        tl55
+          .to(".cackle", {
+            rotation: 5,
+          })
+          .to(".cackle", {
+            rotation: -5,
+          });
+      }
+
+      tl55.to(".tree2", {
+        opacity: 0,
+        x: 0,
+      });
+
+      for (let i = 0; i < 4; i++) {
+        tl55
+          .to(".babbity", {
+            x: -window.innerWidth,
+            rotation: 5,
+          })
+          .to(".babbity", {
+            x: -window.innerWidth,
+            rotation: -5,
+          });
+      }
+      console.log(scrollAt);
   },
 
   methods: {
@@ -1532,6 +1877,31 @@ export default {
   height: 50%;
 }
 
+.elements.mob {
+  z-index: 65;
+}
+
+.mob1,
+.mob2,
+.mob3 {
+  position: absolute;
+  height: 50%;
+  width: auto;
+  opacity: 0;
+}
+.mob1 {
+  right: -100%;
+  bottom: 8%;
+}
+.mob2 {
+  right: -90%;
+  bottom: 7%;
+}
+.mob3 {
+  right: -115%;
+  bottom: 7%;
+}
+
 .castle {
   opacity: 0;
   left: 2%;
@@ -1653,5 +2023,14 @@ button:focus {
   position: absolute;
   right: -10%;
   bottom: 5%;
+}
+
+.cackle {
+  position: absolute;
+  height: 30%;
+  left: 7%;
+  bottom: 50%;
+  z-index: 100;
+  opacity: 0;
 }
 </style>
