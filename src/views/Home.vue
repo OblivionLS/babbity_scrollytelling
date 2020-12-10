@@ -10,15 +10,19 @@
     <button v-on:click="scrollDown" id="button" class="btn">Klick Me</button>
   </div>
   <audio id="audio_1">
-    <source src="../assets/audio/111_Part_01.mp3" type="audio/mpeg" />
+    <source src="../assets/audio/001_King_Hunter.mp3" type="audio/mpeg" />
   </audio>
 
   <audio id="audio_2">
-    <source src="../assets/audio/112_Part_02.mp3" type="audio/mpeg" />
+    <source src="../assets/audio/002_Charlatan_Joins.mp3" type="audio/mpeg" />
   </audio>
 
   <audio id="audio_3">
-    <source src="../assets/audio/113_Part_03.mp3" type="audio/mpeg" />
+    <source src="../assets/audio/003_Money_Wach.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="audio_4">
+    <source src="../assets/audio/004_Babbedy_Sees.mp3" type="audio/mpeg" />
   </audio>
 
   <div class="scene1" style="z-index: 2" id="scene1">
@@ -107,7 +111,7 @@ let scrollAt;
 scrollAt = 0;
 let parts = [1, 3500, 5500, 8500, 11300];
 let speed = [0, 10, 20, 10, 10];
-let waitFor = [0, 2, 0, 0];
+let waitFor = [0, 0, 0, 0];
 let index = 1;
 let audioPlay = false;
 
@@ -1301,6 +1305,7 @@ export default {
           snd.play();
           audioPlay = true;
         } else {
+          snd.volume = 0.4;
           sndOld.pause();
           snd.play();
         }
