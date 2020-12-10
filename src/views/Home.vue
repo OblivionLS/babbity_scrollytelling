@@ -96,8 +96,8 @@ gsap.registerPlugin(ScrollToPlugin);
 
 let scrollAt;
 scrollAt = 0;
-let parts = [1, 3500, 5500, 8500];
-let speed = [0, 10, 20, 10];
+let parts = [1, 3500, 5500, 8500, 11300];
+let speed = [0, 10, 20, 10, 10];
 let waitFor = [0, 2, 0, 0];
 let index = 1;
 let audioPlay = false;
@@ -1004,7 +1004,7 @@ export default {
     let tl10 = gsap.timeline({
       scrollTrigger: {
         start: scrollAt,
-        end: "+=50",
+        end: "+=500",
         trigger: ".break",
         scrub: 1,
         markers: {
@@ -1013,6 +1013,7 @@ export default {
         },
       },
     });
+    scrollAt += 500;
 
     tl10.to(".break", {
       opacity: 1,
@@ -1075,8 +1076,8 @@ export default {
     let tl11 = gsap.timeline({
       scrollTrigger: {
         start: scrollAt,
-        end: "+=50",
-        trigger: ".break",
+        end: "+=500",
+        trigger: ".koenig",
         scrub: 1,
         markers: {
           startColor: "var(--invisible)",
@@ -1128,6 +1129,12 @@ export default {
         rotation: 605,
         x: window.innerWidth + window.innerWidth/2,
       });
+      scrollAt += 500;
+      console.log(scrollAt);
+
+    //=============================================================================
+    // Fade out Scene 4
+    //=============================================================================
 
 
     //=============================================================================
