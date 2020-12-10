@@ -79,7 +79,7 @@
   </div>
   <div class="scene3" id="scene3"></div>
   <div class="scene4" id="scene4" style="z-index: 90">
-    <div class="elements character">
+    <div class="elements character" id="muggle2">
       <img src="../assets/muggle.png" alt="muggleRight" class="muggle2" />
     </div>
   </div>
@@ -1010,16 +1010,28 @@ export default {
       },
     });
 
-    
-    tl10.to(".wandimg",{
-      rotation:20,
-      xPercent: 10
-    })
-
     tl10.to(".break",{
       opacity:1,
     });
+    
+    tl10.to(".wandimg",{
+      rotation:20,
+      xPercent: 10,
+    });
 
+   
+
+    tl10.to(".break", {
+      opacity:0,
+    });
+
+    tl10.to(".tree", {
+      xPercent: 0,
+    });
+
+    tl10.to(".elements#muggle2", {
+      scaleX: -1,
+    });
 
     //=============================================================================
     // Fade in Scene 5
