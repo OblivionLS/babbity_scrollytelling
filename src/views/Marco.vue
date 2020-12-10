@@ -9,16 +9,20 @@
   <div class="button">
     <button v-on:click="scrollDown" id="button" class="btn">Klick Me</button>
   </div>
-  <audio id="audio_1">
-    <source src="../assets/audio/111_Part_01.mp3" type="audio/mpeg" />
+   <audio id="audio_1">
+    <source src="../assets/audio/001_King_Hunter.mp3" type="audio/mpeg" />
   </audio>
 
   <audio id="audio_2">
-    <source src="../assets/audio/112_Part_02.mp3" type="audio/mpeg" />
+    <source src="../assets/audio/002_Charlatan_Joins.mp3" type="audio/mpeg" />
   </audio>
 
   <audio id="audio_3">
-    <source src="../assets/audio/113_Part_03.mp3" type="audio/mpeg" />
+    <source src="../assets/audio/003_Money_Wach.mp3" type="audio/mpeg" />
+  </audio>
+
+  <audio id="audio_4">
+    <source src="../assets/audio/004_Babbedy_Sees.mp3" type="audio/mpeg" />
   </audio>
 
   <div class="scene1" style="z-index: 2" id="scene1">
@@ -818,8 +822,9 @@ fromTo(
 
   methods: {
     scrollDown: function () {
+    
+    
       console.log("Go Down");
-
       var elem = document.getElementById("scene" + nextScene);
       console.log(elem);
       if (elem != null) {
@@ -832,14 +837,18 @@ fromTo(
         index = index + 1;
         nextScene = nextScene + 1;
         if(audioPlay == false){
+          window.addEventListener("wheel", function(e){e.preventDefault();}, {passive: false} );
+
           snd.volume = 0.4; 
           snd.play();
           audioPlay = true;
         } else {
           sndOld.pause();
+          snd.volume = 0.4; 
           snd.play();
         }
       } else {
+        //window.removeEventListener("wheel", function(e){e.preventDefault();}, {passive: false} );
         console.log("End of the Story");
         console.log(elem);
       }
