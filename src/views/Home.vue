@@ -944,7 +944,10 @@ export default {
         },
       },
     });
-    tl7.to(".tree", {
+    tl7.fromTo(".tree",{
+      opacity:0,
+      xPercent:0,
+    }, {
       opacity: 1,
       xPercent: 100,
     });
@@ -1038,16 +1041,14 @@ export default {
     tl10.to(".wandimg", {
       rotation: 20,
       xPercent: 10,
-      duration: 0.5,
     });
 
     tl10.to(".break", {
       opacity: 0,
-      duration: 0.5,
     });
 
     tl10.to(".tree", {
-      xPercent: 0,
+      xPercent: 90,
     });
 
     tl10.fromTo(
@@ -1166,6 +1167,7 @@ export default {
     });
     scrollAt += 500;
 
+
     tl40.to(
       ".wandimg",
       
@@ -1175,6 +1177,10 @@ export default {
         opacity: 0,
       }
     );
+
+    tl40.to(".tree", {
+      xPercent: 0,
+    });
 
     tl40.to(".muggle2", {
       opacity: 0,
@@ -1328,7 +1334,8 @@ export default {
       scaleX: -1,
     });
     tl52.to(".koenig", {
-      x: -window.innerWidth / 3,
+      
+     x: -window.innerWidth / 3 ,
     });
 
     tl51.to(".elements#muggle", {
@@ -1336,7 +1343,8 @@ export default {
       scaleX: 1,
     });
     tl52.to(".muggle", {
-      x: -window.innerWidth / 3,
+      
+      x: -window.innerWidth / 3 ,
     });
 
      for (let i = 1; i <= 4; i++) {
@@ -1369,7 +1377,8 @@ export default {
       scaleX: 1,
     });
     tl52.to(".koenig", {
-      x: -window.innerWidth / 3,
+      
+      x: -window.innerWidth / 3 ,
     });
 
     tl51.to(".elements#muggle", {
@@ -1377,7 +1386,8 @@ export default {
       scaleX: -1,
     });
     tl52.to(".muggle", {
-      x: -window.innerWidth / 3,
+      
+      x: -window.innerWidth / 3 ,
     });
 
     console.log(scrollAt);
