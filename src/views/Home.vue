@@ -25,6 +25,10 @@
     <source src="../assets/audio/004_Babbedy_Sees.mp3" type="audio/mpeg" />
   </audio>
 
+  <audio id="audio_5">
+    <source src="../assets/audio/005_Jumping.mp3" type="audio/mpeg" />
+  </audio>
+
   <div class="scene1" style="z-index: 2" id="scene1">
     <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang1" />
     <img src="../assets/Vorhang1.png" alt="Vorhang" class="vorhang vorhang2" />
