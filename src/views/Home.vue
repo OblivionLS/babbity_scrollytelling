@@ -969,6 +969,7 @@ export default {
         opacity: 0,
         scale: 0.5,
         yPercent: 0,
+        xPercent: 0,
       },
       {
         scale: 1,
@@ -979,6 +980,7 @@ export default {
     tlCastle.to(".castle", {
       scale: 4,
       yPercent: "-= 100",
+        xPercent: 50,
     });
 
     scrollAt += 500;
@@ -1106,7 +1108,7 @@ export default {
       }
     );
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 20; i++) {
       tl3.to(".muggle", {
         opacity: 1,
         xPercent: "-=5",
@@ -1122,6 +1124,7 @@ export default {
         scale: 0.7,
       });
     }
+
     tl3.to(".muggle", {
       opacity: 1,
       xPercent: "-=0",
@@ -1129,6 +1132,42 @@ export default {
       rotate: 0,
       scale: 0.7,
     });
+
+    for (let i = 0; i < 8; i++) {
+
+      tl3.to(".muggle", {
+        opacity: 1,
+        yPercent: 0,
+        rotate: 5,
+        scale: 0.7,
+      });
+      tl3.to(".muggle", {
+        opacity: 1,
+        yPercent: 0,
+        rotate: -5,
+        scale: 0.7,
+      });
+    }
+
+    for (let i = 0; i <10; i++) {
+
+      tl3.to(".koenig", {
+        opacity: 1,
+        scale: 1,
+      xPercent: -200,
+      yPercent: 5,
+      rotate: 10,
+      });
+      tl3.to(".koenig", {
+        opacity: 1,
+      scale: 1,
+      xPercent: -200,
+      yPercent: 5,
+      rotate: 0,
+      });
+    }
+
+
     scrollAt += 500;
 
     console.log(scrollAt);
