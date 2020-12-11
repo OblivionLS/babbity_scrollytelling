@@ -41,9 +41,9 @@
     </div>
 
     <div class="elements mob">
-      <img src="../assets/Mob.png" alt="mob" class="mob1" />
-      <img src="../assets/Mob.png" alt="mob" class="mob2" />
-      <img src="../assets/Mob.png" alt="mob" class="mob3" />
+      <img src="../assets/mob.png" alt="mob" class="mob1" />
+      <img src="../assets/mob.png" alt="mob" class="mob2" />
+      <img src="../assets/mob.png" alt="mob" class="mob3" />
     </div>
 
     <div class="schloss elements">
@@ -119,7 +119,7 @@ let parts = [1, 4600, 7300, 10300, 13300, 15300];
 let speed = [0, 15, 20, 10, 10, 10];
 let waitFor = [0, 0, 0, 0];
 let index = 1;
-let audioPlay = false;
+//let audioPlay = false;
 
 //var lastScene = 0;
 //var activeScene = 1;
@@ -1800,20 +1800,38 @@ for (let i = 1; i <= 2; i++) {
 
         index = index + 1;
         nextScene = nextScene + 1;
-        if (audioPlay == false) {
+        if (!this.isPlaying(sndOld)) {
           snd.volume = 0.4;
           snd.play();
-          audioPlay = true;
+          //audioPlay = true;
         } else {
           snd.volume = 0.4;
           sndOld.pause();
+          sndOld.currentTime = 0;
           snd.play();
         }
       } else {
+        index = 0;
+        gsap.to(window, {
+          duration: 30,
+          scrollTo: parts[index]
+        });
+        index = 1;
+        nextScene = 1;
+
+        
         console.log("End of the Story");
         console.log(elem);
       }
       console.log("this is the Scrollpoint" + scrollAt);
+    },
+    isPlaying: function (audioElm){
+      if(audioElm != null){
+         return !audioElm.paused;
+      }else{
+        return false;
+      }
+     
     },
   },
 };
@@ -1995,6 +2013,7 @@ for (let i = 1; i <= 2; i++) {
   bottom: 0%;
   margin: auto;
   width: 100%;
+  cursor: pointer;
 }
 
 button {
