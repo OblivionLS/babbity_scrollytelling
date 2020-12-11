@@ -55,6 +55,9 @@ body{
 }
 
 #nav {
+  font-family: "Brush Script MT";
+  font-weight: normal;
+  font-size: 1.5em;
   top:0px;
   z-index: 5;
   padding: 0px 30px 30px 30px;
@@ -73,12 +76,17 @@ body{
 
 #nav a.router-link-exact-active {
   z-index: 100;
+  font-weight:bold;
   font-size: 2em;
   color: #e1bc29;
   font-weight: bold;
 }
 
 h1 {
+  font-family: "Brush Script MT";
+  font-size: 3.5em;
+  font-weight: normal;
+  padding-bottom: 2%;
   position: absolute;
   z-index: 90;
   color:var(--text);
@@ -92,7 +100,7 @@ p{
   color:var(--text);
   text-align: center;
   width:100%;
-  top: 30%;
+  top: 35%;
   position:absolute;
   z-index: 90;
 }

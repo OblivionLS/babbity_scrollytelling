@@ -31,6 +31,10 @@ export default{
           scrub: 1,
           trigger: anim,
           toggleActions: "restart pause resume reset",
+          markers: {
+              startColor: "var(--invisible)",
+              endColor: "var(--invisible)",
+            },
         },
         x: 400,
         // rotation: 360,
@@ -41,7 +45,10 @@ export default{
       scrollTrigger: {
         start: "bottom bottom",
         end: "top center",
-        markers: true,
+        markers: {
+              startColor: "var(--invisible)",
+              endColor: "var(--invisible)",
+            },
         scrub: 1,
         trigger: ".b",
         //  toggleActions:"restart pause resume reset",
@@ -49,6 +56,18 @@ export default{
       rotation: 360,
     });
 
+/*
+scrollTrigger: {
+            start: parts[i],
+            end: "+=500",
+            trigger: ".btn",
+            scrub: 1,
+            markers: {
+              startColor: "var(--invisible)",
+              endColor: "var(--invisible)",
+            },
+          }, 
+*/
   }
 }
 

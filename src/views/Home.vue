@@ -7,7 +7,7 @@
   </div>
   <div class="content"></div>
   <div class="button">
-    <button v-on:click="scrollDown" id="button" class="btn">Klick Me</button>
+    <button v-on:click="scrollDown" id="button" class="btn"> </button>
   </div>
   <audio id="audio_1">
     <source src="../assets/audio/001_King_Hunter.mp3" type="audio/mpeg" />
@@ -592,7 +592,7 @@ export default {
           });
       }
     }
-    
+
 
     //============================================================
     //Fadeout Scene 1
@@ -2018,11 +2018,17 @@ for (let i = 1; i <= 2; i++) {
   bottom: 0%;
   margin: auto;
   width: 100%;
+  height:20%;
+  bottom: 5%;
 }
 
 button {
   padding: 1em 3em;
-  background-color: rgba(0, 0, 0, 0.493);
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url("../assets/button1.png");
+  background-position: center;
+  background-size: auto 100%;
+  background-repeat:no-repeat;
   color: white;
   border: none;
   font-size: 1.5em;
@@ -2030,6 +2036,7 @@ button {
   margin: auto;
   position: absolute;
   width: 40%;
+  height:100%;
   margin-right: -20%;
   right: 50%;
   bottom: 0px;
