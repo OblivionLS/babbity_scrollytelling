@@ -2013,7 +2013,6 @@ for (let i = 1; i <= 2; i++) {
   bottom: 0%;
   margin: auto;
   width: 100%;
-  cursor: pointer;
 }
 
 button {
@@ -2030,6 +2029,7 @@ button {
   right: 50%;
   bottom: 0px;
   opacity: 1;
+  cursor: pointer;
 }
 
 button:focus {
