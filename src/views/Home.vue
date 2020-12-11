@@ -117,10 +117,11 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
 
+
 let scrollAt;
 scrollAt = 0;
-let parts = [1, 4600, 7300, 10300, 13300, 15300];
-let speed = [0, 15, 20, 10, 10, 10];
+let parts = [1, 4600, 7300, 10800, 13800, 15800];
+let speed = [0, 15, 20, 10, 20, 15];
 let waitFor = [0, 0, 0, 0];
 let index = 1;
 //let audioPlay = false;
@@ -1086,7 +1087,7 @@ export default {
     let tl3 = gsap.timeline({
       scrollTrigger: {
         start: scrollAt,
-        end: "+=500",
+        end: "+=1000",
         trigger: ".muggle",
         scrub: 1,
         markers: {
@@ -1113,17 +1114,17 @@ export default {
       }
     );
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10; i++) {
       tl3.to(".muggle", {
         opacity: 1,
-        xPercent: "-=5",
+        xPercent: "-=10",
         yPercent: 0,
         rotate: 5,
         scale: 0.7,
       });
       tl3.to(".muggle", {
         opacity: 1,
-        xPercent: "-=5",
+        xPercent: "-=10",
         yPercent: 8,
         rotate: -5,
         scale: 0.7,
@@ -1157,14 +1158,13 @@ export default {
     for (let i = 0; i <10; i++) {
 
       tl3.to(".koenig", {
-        opacity: 1,
         scale: 1,
       xPercent: -200,
       yPercent: 5,
       rotate: 10,
       });
       tl3.to(".koenig", {
-        opacity: 1,
+        opacity: "-=0.1",
       scale: 1,
       xPercent: -200,
       yPercent: 5,
@@ -1173,7 +1173,7 @@ export default {
     }
 
 
-    scrollAt += 500;
+    scrollAt += 1000;
 
     console.log(scrollAt);
 

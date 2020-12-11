@@ -1,8 +1,6 @@
 <template>
   <div id="nav">
     <!-- <router-link to="/">Home</router-link> | -->
-    <router-link to="/">Story</router-link>
-    <router-link to="/inspiration">Moodboard</router-link>
   </div>
   <router-view />
   <HelloWorld msg="Welcome to Your Vue.js App" />
